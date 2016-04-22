@@ -47,11 +47,11 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        Blog blog = mBlogService.queryById(id);
-        if (blog == null) {
+        List<Blog> blogList = mBlogService.queryById(id);
+        if (blogList == null) {
             mResult.fail(101);
         } else {
-            mResult.success(blog);
+            mResult.success(blogList);
         }
         renderJson(mResult);
     }

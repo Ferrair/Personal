@@ -62,11 +62,11 @@ public class WorkController extends Controller {
             renderJson(mResult);
             return;
         }
-        Work work = mService.queryById(id);
-        if (work == null) {
+        List<Work> workList = mService.queryById(id);
+        if (workList == null) {
             mResult.fail(101);
         } else {
-            mResult.success(work);
+            mResult.success(workList);
         }
         renderJson(mResult);
     }

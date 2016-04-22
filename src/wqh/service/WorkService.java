@@ -2,6 +2,7 @@ package wqh.service;
 
 import wqh.model.Work;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,8 +21,10 @@ public class WorkService extends ServiceAbs {
         return aWork.save();
     }
 
-    public Work queryById(int id) {
-        return Work.dao.findById(id);
+    public List<Work> queryById(int id) {
+        List<Work> mList = new ArrayList<>();
+        mList.add(Work.dao.findById(id));
+        return mList;
     }
 
     public List<Work> queryByTitle(String title) {

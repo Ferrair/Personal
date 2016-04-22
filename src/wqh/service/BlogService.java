@@ -4,6 +4,7 @@ import wqh.model.Blog;
 import wqh.model.Tag;
 import wqh.util.TimeUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +15,10 @@ import java.util.List;
  */
 public class BlogService extends ServiceAbs {
 
-    public Blog queryById(int id) {
-        return Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id);
+    public List<Blog> queryById(int id) {
+        List<Blog> mList = new ArrayList<>();
+        mList.add(Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id));
+        return mList;
     }
 
     public List<Blog> queryAll() {
@@ -83,7 +86,7 @@ public class BlogService extends ServiceAbs {
      * add the times which be read
      */
     public boolean addTimes(int id) {
-        Blog targetBlog = queryById(id);
+        Blog targetBlog = queryById(id).get(0);
         int oldTimes = targetBlog.get("times");
         return update(id, "times", ++oldTimes);
     }
