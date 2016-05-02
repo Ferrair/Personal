@@ -15,16 +15,18 @@ public class CommentService extends ServiceAbs {
 
     /**
      * @param createdBy the user name of the comment
-     * @param belongTo the blog id that the comment point to
-     * @param content  the content of this comment
+     * @param belongTo  the blog id that the comment point to
+     * @param content   the content of this comment
      */
-    public boolean publish(String createdBy, int belongTo, String content) {
+    public Comment publish(String createdBy, int belongTo, String content) {
         Comment aComment = new Comment();
         aComment.set("createdBy", createdBy);
         aComment.set("content", content);
         aComment.set("belongTo", belongTo);
         aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
-        return aComment.save();
+        if (aComment.save())
+            return aComment;
+        else return null;
     }
 
     public List<Comment> queryByBelongId(int belongTo) {

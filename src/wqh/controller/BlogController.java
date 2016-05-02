@@ -165,12 +165,7 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        boolean success = mBlogService.publish(title, tag, type, abstractStr, content);
-        if (success) {
-            mResult.success(null);
-        } else {
-            mResult.fail(103);
-        }
+        mResult.success(mBlogService.publish(title, tag, type, abstractStr, content));
         renderJson(mResult);
     }
 
@@ -183,12 +178,7 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        boolean success = mBlogService.addTimes(id);
-        if (success) {
-            mResult.success(null);
-        } else {
-            mResult.fail(103);
-        }
+        mResult.success(mBlogService.addTimes(id));
         renderJson(mResult);
     }
 
@@ -203,12 +193,7 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        boolean success = mCommentService.publish(createdBy, belongTo, content);
-        if (success) {
-            mResult.success(null);
-        } else {
-            mResult.fail(103);
-        }
+        mResult.success(mCommentService.publish(createdBy, belongTo, content));
         renderJson(mResult);
     }
 }

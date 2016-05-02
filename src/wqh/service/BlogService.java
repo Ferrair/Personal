@@ -59,10 +59,10 @@ public class BlogService extends ServiceAbs {
     /**
      * @param tagName the name attr of the tag. The tag MUST exists in the database,otherwise return false(that means this publish is fail)
      */
-    public boolean publish(String title, String tagName, String type, String abstractStr, String content) {
+    public Blog publish(String title, String tagName, String type, String abstractStr, String content) {
         Tag targetTag = Tag.dao.findFirst("SELECT id FROM tagName WHERE name = ?", tagName);
         if (targetTag == null) {
-            return false;
+            return null;
         }
         Blog aBlog = new Blog();
         aBlog.set("title", title);
@@ -72,7 +72,9 @@ public class BlogService extends ServiceAbs {
         aBlog.set("content", content);
         aBlog.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         aBlog.set("times", 0);
-        return aBlog.save();
+        if (aBlog.save())
+            return aBlog;
+        else return null;
     }
 
     /**
@@ -85,9 +87,11 @@ public class BlogService extends ServiceAbs {
     /**
      * add the times which be read
      */
-    public boolean addTimes(int id) {
+    public Blog addTimes(int id) {
         Blog targetBlog = queryById(id).get(0);
         int oldTimes = targetBlog.get("times");
-        return update(id, "times", ++oldTimes);
+        if (update(id, "times", ++oldTimes))
+            return targetBlog;
+        else return null;
     }
 }
