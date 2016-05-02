@@ -31,7 +31,7 @@ public class BlogService extends ServiceAbs {
      */
     public List<Blog> queryWithoutContent() {
         //Todo: paginate in next Version
-        return Blog.dao.find("SELECT blog.title,blog.type,blog.abstractStr,blog.createdAt,blog.times,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id");
+        return Blog.dao.find("SELECT blog.id,blog.title,blog.type,blog.abstractStr,blog.createdAt,blog.times,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id");
     }
 
     /**

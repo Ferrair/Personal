@@ -10,6 +10,7 @@ import wqh.service.BlogService;
 import wqh.service.CommentService;
 import wqh.service.ServiceAbs;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -153,13 +154,13 @@ public class BlogController extends Controller {
 
     @ActionKey("/blog/publish")
     public void publish() {
-        String title = getPara("title"); //MUST
+        String title = getPara("title");     //MUST
         String type = getPara("type");
         String content = getPara("content"); //MUST
-        String tag = getPara("tag");     //MUST
+        String tag = getPara("tag");         //MUST
         String abstractStr = getPara("abstractStr");
 
-        if (title == null && content == null && tag == null) {
+        if (title == null || content == null || tag == null) {
             mResult.fail(102);
             renderJson(mResult);
             return;
@@ -183,6 +184,26 @@ public class BlogController extends Controller {
             return;
         }
         boolean success = mBlogService.addTimes(id);
+        if (success) {
+            mResult.success(null);
+        } else {
+            mResult.fail(103);
+        }
+        renderJson(mResult);
+    }
+
+    @ActionKey("/blog/appendComment")
+    public void appendComment() {
+        Integer belongTo = getParaToInt("belongTo"); //MUST
+        String content = getPara("content");         //MUST
+        String createdBy = getPara("createdBy");     //MUST
+
+        if (belongTo == null || content == null || createdBy == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        boolean success = mCommentService.publish(createdBy, belongTo, content);
         if (success) {
             mResult.success(null);
         } else {

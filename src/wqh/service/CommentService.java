@@ -14,13 +14,13 @@ import java.util.List;
 public class CommentService extends ServiceAbs {
 
     /**
-     * @param createBy the user name of the comment
+     * @param createdBy the user name of the comment
      * @param belongTo the blog id that the comment point to
      * @param content  the content of this comment
      */
-    public boolean publish(String createBy, int belongTo, String content) {
+    public boolean publish(String createdBy, int belongTo, String content) {
         Comment aComment = new Comment();
-        aComment.set("createBy", createBy);
+        aComment.set("createdBy", createdBy);
         aComment.set("content", content);
         aComment.set("belongTo", belongTo);
         aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
