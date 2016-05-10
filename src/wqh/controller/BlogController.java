@@ -196,4 +196,5 @@ public class BlogController extends Controller {
         mResult.success(mCommentService.publish(createdBy, belongTo, content));
         renderJson(mResult);
     }
+
 }

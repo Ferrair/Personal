@@ -1,6 +1,7 @@
 package wqh.service;
 
 import wqh.model.Comment;
+import wqh.util.ListUtil;
 import wqh.util.TimeUtil;
 
 import java.util.List;
@@ -18,14 +19,14 @@ public class CommentService extends ServiceAbs {
      * @param belongTo  the blog id that the comment point to
      * @param content   the content of this comment
      */
-    public Comment publish(String createdBy, int belongTo, String content) {
+    public List<Comment> publish(String createdBy, int belongTo, String content) {
         Comment aComment = new Comment();
         aComment.set("createdBy", createdBy);
         aComment.set("content", content);
         aComment.set("belongTo", belongTo);
         aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         if (aComment.save())
-            return aComment;
+            return ListUtil.of(aComment);
         else return null;
     }
 

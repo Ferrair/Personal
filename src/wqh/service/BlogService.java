@@ -2,10 +2,13 @@ package wqh.service;
 
 import wqh.model.Blog;
 import wqh.model.Tag;
+import wqh.util.ListUtil;
 import wqh.util.TimeUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created on 2016/3/12.
@@ -16,9 +19,7 @@ import java.util.List;
 public class BlogService extends ServiceAbs {
 
     public List<Blog> queryById(int id) {
-        List<Blog> mList = new ArrayList<>();
-        mList.add(Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id));
-        return mList;
+        return ListUtil.of(Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id));
     }
 
     public List<Blog> queryAll() {
@@ -59,7 +60,7 @@ public class BlogService extends ServiceAbs {
     /**
      * @param tagName the name attr of the tag. The tag MUST exists in the database,otherwise return false(that means this publish is fail)
      */
-    public Blog publish(String title, String tagName, String type, String abstractStr, String content) {
+    public List<Blog> publish(String title, String tagName, String type, String abstractStr, String content) {
         Tag targetTag = Tag.dao.findFirst("SELECT id FROM tagName WHERE name = ?", tagName);
         if (targetTag == null) {
             return null;
@@ -73,8 +74,12 @@ public class BlogService extends ServiceAbs {
         aBlog.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         aBlog.set("times", 0);
         if (aBlog.save())
-            return aBlog;
+            return ListUtil.of(aBlog);
         else return null;
+    }
+
+    public Collection<? extends Blog> queryByContent(String content) {
+        return Blog.dao.find("SELECT * FROM blog WHERE title LIKE '%" + content + "%'");
     }
 
     /**
@@ -87,11 +92,12 @@ public class BlogService extends ServiceAbs {
     /**
      * add the times which be read
      */
-    public Blog addTimes(int id) {
+    public List<Blog> addTimes(int id) {
         Blog targetBlog = queryById(id).get(0);
         int oldTimes = targetBlog.get("times");
         if (update(id, "times", ++oldTimes))
-            return targetBlog;
+            return ListUtil.of(targetBlog);
         else return null;
     }
+
 }
