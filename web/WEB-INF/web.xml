@@ -17,9 +17,9 @@
         <filter-name>jfinal</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-   <!-- <error-page>
-        <error-code>404</error-code>
-        <location>/pager/404_error.html</location>
-    </error-page>-->
+    <!--Set Session expire time:60 min here.-->
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
 
 </web-app>

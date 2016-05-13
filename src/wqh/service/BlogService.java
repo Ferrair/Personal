@@ -2,13 +2,11 @@ package wqh.service;
 
 import wqh.model.Blog;
 import wqh.model.Tag;
-import wqh.util.ListUtil;
+import wqh.util.CollectionUtil;
 import wqh.util.TimeUtil;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created on 2016/3/12.
@@ -19,7 +17,7 @@ import java.util.stream.Stream;
 public class BlogService extends ServiceAbs {
 
     public List<Blog> queryById(int id) {
-        return ListUtil.of(Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id));
+        return CollectionUtil.of(Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id));
     }
 
     public List<Blog> queryAll() {
@@ -74,7 +72,7 @@ public class BlogService extends ServiceAbs {
         aBlog.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         aBlog.set("times", 0);
         if (aBlog.save())
-            return ListUtil.of(aBlog);
+            return CollectionUtil.of(aBlog);
         else return null;
     }
 
@@ -83,20 +81,20 @@ public class BlogService extends ServiceAbs {
     }
 
     /**
-     * @param id the id of a blog which want to be updated
+     * @param id the id of a blog which want to be updated.
      */
     public boolean update(int id, String key, Object value) {
         return Blog.dao.findById(id).set(key, value).update();
     }
 
     /**
-     * add the times which be read
+     * add the times which will be read.
      */
     public List<Blog> addTimes(int id) {
         Blog targetBlog = queryById(id).get(0);
         int oldTimes = targetBlog.get("times");
         if (update(id, "times", ++oldTimes))
-            return ListUtil.of(targetBlog);
+            return CollectionUtil.of(targetBlog);
         else return null;
     }
 

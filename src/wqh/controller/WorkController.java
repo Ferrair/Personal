@@ -1,14 +1,16 @@
 package wqh.controller;
 
+import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
+import wqh.aop.PostIntercept;
+import wqh.aop.UserIntercept;
 import wqh.config.Result;
 import wqh.model.Work;
 import wqh.service.ServiceAbs;
 import wqh.service.WorkService;
 
 import java.util.List;
-import java.util.WeakHashMap;
 
 /**
  * Created on 2016/3/12.
@@ -23,6 +25,7 @@ public class WorkController extends Controller {
     /**
      * Index of the blog,show all info of all the work(the number of work is a bit)
      */
+    @SuppressWarnings("unused")
     public void index() {
         List<Work> workAbstracts = mService.queryAll();
         if (workAbstracts.size() == 0) {
@@ -33,6 +36,7 @@ public class WorkController extends Controller {
         renderJson(mResult);
     }
 
+    @Before(PostIntercept.class)
     @ActionKey("/work/publish")
     public void publish() {
         String title = getPara("title");
@@ -89,8 +93,10 @@ public class WorkController extends Controller {
     }
 
     /**
+     * Download this apk MUST login first.
      * fileName:the file name of the Work,for example----"Chatting.apk"
      */
+    @Before(UserIntercept.class)
     @ActionKey("/work/download")
     public void download() {
         String fileName = getPara("fileName");

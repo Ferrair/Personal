@@ -8,10 +8,7 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.ViewType;
 import wqh.aop.AvoidAttackHandler;
-import wqh.controller.AdminController;
-import wqh.controller.BlogController;
-import wqh.controller.IndexController;
-import wqh.controller.WorkController;
+import wqh.controller.*;
 import wqh.model.*;
 
 /**
@@ -37,6 +34,7 @@ public class MainConfig extends JFinalConfig {
         me.add("/blog", BlogController.class);
         me.add("/work", WorkController.class);
         me.add("/admin", AdminController.class);
+        me.add("/user", UserController.class);
     }
 
     @Override
@@ -51,7 +49,8 @@ public class MainConfig extends JFinalConfig {
         arp.addMapping("blog", Blog.class);
         arp.addMapping("work", Work.class);
         arp.addMapping("comment", Comment.class);
-        arp.addMapping("tag",Tag.class);
+        arp.addMapping("tag", Tag.class);
+        arp.addMapping("user", User.class);
     }
 
     @Override
@@ -61,8 +60,8 @@ public class MainConfig extends JFinalConfig {
     //在Jfinal里面是倒序执行的(即在后面添加的Handler先执行，ActionHandler最后执行)
     @Override
     public void configHandler(Handlers me) {
-        me.add(new ContextPathHandler("basePath"));
-        me.add(new AvoidAttackHandler());
+        //me.add(new ContextPathHandler("basePath"));
+        //me.add(new AvoidAttackHandler());
     }
 
 }

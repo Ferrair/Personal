@@ -17,6 +17,9 @@ public class Result extends HashMap<String, Object> {
         code.put(101, "Can't Find Object");
         code.put(102, "Lack Of Action Parameters"); // The action param form client is lack
         code.put(103, "Insert Error"); // Occurred when call 'Publish' method fail
+        code.put(104, "Action Error"); // Wrong in HTTP action.
+        code.put(105, "Access Denied"); // Access Denied.
+        code.put(106, "Need Login"); // Need Login.
     }
 
     public void fail(int errorCode) {

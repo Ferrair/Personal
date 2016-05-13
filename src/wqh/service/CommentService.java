@@ -1,7 +1,7 @@
 package wqh.service;
 
 import wqh.model.Comment;
-import wqh.util.ListUtil;
+import wqh.util.CollectionUtil;
 import wqh.util.TimeUtil;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class CommentService extends ServiceAbs {
         aComment.set("belongTo", belongTo);
         aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         if (aComment.save())
-            return ListUtil.of(aComment);
+            return CollectionUtil.of(aComment);
         else return null;
     }
 

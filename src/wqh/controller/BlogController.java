@@ -1,8 +1,10 @@
 package wqh.controller;
 
+import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
-import com.jfinal.plugin.activerecord.Page;
+import wqh.aop.PostIntercept;
+import wqh.aop.UserIntercept;
 import wqh.config.Result;
 import wqh.model.Blog;
 import wqh.model.Comment;
@@ -10,21 +12,21 @@ import wqh.service.BlogService;
 import wqh.service.CommentService;
 import wqh.service.ServiceAbs;
 
-import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created on 2016/3/12.
  *
  * @author 王启航
- * @version 1.0
+ * @version 1.1 Add Some AOP
  */
 
 public class BlogController extends Controller {
 
     private BlogService mBlogService = ServiceAbs.getInstance(BlogService.class, this);
     private CommentService mCommentService = ServiceAbs.getInstance(CommentService.class, this);
-    Result mResult = new Result();
+    private Result mResult = new Result();
 
     /**
      * Index of the blog,show the tag and abstracts of all the blog.
@@ -151,7 +153,7 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
-
+    @Before(PostIntercept.class)
     @ActionKey("/blog/publish")
     public void publish() {
         String title = getPara("title");     //MUST
@@ -169,7 +171,7 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
-
+    @Before(PostIntercept.class)
     @ActionKey("/blog/addTimes")
     public void addTimes() {
         Integer id = getParaToInt("id");
@@ -182,6 +184,10 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
+    /**
+     * Publish comments MUST login first.
+     */
+    @Before({PostIntercept.class, UserIntercept.class})
     @ActionKey("/blog/appendComment")
     public void appendComment() {
         Integer belongTo = getParaToInt("belongTo"); //MUST
@@ -194,6 +200,32 @@ public class BlogController extends Controller {
             return;
         }
         mResult.success(mCommentService.publish(createdBy, belongTo, content));
+        renderJson(mResult);
+    }
+
+
+    /**
+     * Search everywhere by given searchStr.And provided Fuzzy-Query.
+     */
+    @ActionKey("/blog/search")
+    public void search() {
+        String searchStr = getPara("search");
+        BlogService mBlogService = ServiceAbs.getInstance(BlogService.class, this);
+        Result mResult = new Result();
+        List<Blog> blogList = new ArrayList<>();
+
+        blogList.addAll(mBlogService.queryByTag(searchStr));
+        blogList.addAll(mBlogService.queryByTitle(searchStr));
+        blogList.addAll(mBlogService.queryByType(searchStr));
+        //Query in Blog's content when searchStr.length() > 5.
+        if (searchStr.length() > 5)
+            blogList.addAll(mBlogService.queryByContent(searchStr));
+
+        if (blogList.size() == 0) {
+            mResult.fail(101);
+        } else {
+            mResult.success(blogList);
+        }
         renderJson(mResult);
     }
 
