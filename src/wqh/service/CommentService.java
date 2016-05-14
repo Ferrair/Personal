@@ -30,11 +30,12 @@ public class CommentService extends ServiceAbs {
         else return null;
     }
 
+    /**
+     * comment.createdBy = user.id
+     * comment.belongTo = blog.id = belongTo
+     */
     public List<Comment> queryByBelongId(int belongTo) {
-        // This SQL Statement equals "SELECT * FROM comment,blog WHERE comment.belongTo = blog.id AND blog.id = 2"
-        // But NOT to use the above one
-        // "SELECT * FROM blog,comment WHERE comment.belongTo = blog.id AND blog.id = 2" will return the content from blog table
-        return Comment.dao.find("SELECT comment.* FROM comment JOIN blog ON comment.belongTo = blog.id WHERE comment.belongTo = ?", belongTo);
+        return Comment.dao.find("SELECT comment.*,user.username AS creatorName,user.avatarUrl AS creatorAvatarUrl FROM comment,blog,user WHERE comment.belongTo = blog.id AND comment.createdBy = user.id AND comment.belongTo = ?", belongTo);
     }
 
     public boolean delete(int id) {

@@ -138,13 +138,13 @@ public class BlogController extends Controller {
 
     @ActionKey("/blog/queryComment")
     public void queryComment() {
-        Integer id = getParaToInt("id");
-        if (id == null) {
+        Integer belongTo = getParaToInt("belongTo");
+        if (belongTo == null) {
             mResult.fail(102);
             renderJson(mResult);
             return;
         }
-        List<Comment> commentList = mCommentService.queryByBelongId(id);
+        List<Comment> commentList = mCommentService.queryByBelongId(belongTo);
         if (commentList.size() == 0) {
             mResult.fail(101);
         } else {
