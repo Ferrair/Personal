@@ -1,5 +1,6 @@
 package wqh.service;
 
+import com.jfinal.plugin.activerecord.Page;
 import wqh.model.Comment;
 import wqh.util.CollectionUtil;
 import wqh.util.TimeUtil;
@@ -34,8 +35,8 @@ public class CommentService extends ServiceAbs {
      * comment.createdBy = user.id
      * comment.belongTo = blog.id = belongTo
      */
-    public List<Comment> queryByBelongId(int belongTo) {
-        return Comment.dao.find("SELECT comment.*,user.username AS creatorName,user.avatarUrl AS creatorAvatarUrl FROM comment,blog,user WHERE comment.belongTo = blog.id AND comment.createdBy = user.id AND comment.belongTo = ?", belongTo);
+    public Page<Comment> queryByBelongId(int belongTo,int pageNum) {
+        return Comment.dao.paginate(pageNum,10,"SELECT comment.*,user.username AS creatorName,user.avatarUrl AS creatorAvatarUrl","FROM comment,blog,user WHERE comment.belongTo = blog.id AND comment.createdBy = user.id AND comment.belongTo = ?", belongTo);
     }
 
     public boolean delete(int id) {

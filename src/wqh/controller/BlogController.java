@@ -3,6 +3,7 @@ package wqh.controller;
 import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Page;
 import wqh.aop.PostIntercept;
 import wqh.aop.UserIntercept;
 import wqh.config.Result;
@@ -31,13 +32,18 @@ public class BlogController extends Controller {
     /**
      * Index of the blog,show the tag and abstracts of all the blog.
      */
-
     public void index() {
-        List<Blog> blogAbstracts = mBlogService.queryWithoutContent();
-        if (blogAbstracts.size() == 0) {
+        Integer pageNum = getParaToInt("pageNum");
+        if (pageNum == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        Page<Blog> blogAbstracts = mBlogService.queryWithoutContent(pageNum);
+        if (blogAbstracts.getPageSize() == 0) {
             mResult.fail(101);
         } else {
-            mResult.success(blogAbstracts);
+            mResult.success(blogAbstracts.getList());
         }
         renderJson(mResult);
     }
@@ -139,16 +145,17 @@ public class BlogController extends Controller {
     @ActionKey("/blog/queryComment")
     public void queryComment() {
         Integer belongTo = getParaToInt("belongTo");
-        if (belongTo == null) {
+        Integer pageNum = getParaToInt("pageNum");
+        if (belongTo == null || pageNum == null) {
             mResult.fail(102);
             renderJson(mResult);
             return;
         }
-        List<Comment> commentList = mCommentService.queryByBelongId(belongTo);
-        if (commentList.size() == 0) {
+        Page<Comment> commentList = mCommentService.queryByBelongId(belongTo, pageNum);
+        if (commentList.getPageSize() == 0) {
             mResult.fail(101);
         } else {
-            mResult.success(commentList);
+            mResult.success(commentList.getList());
         }
         renderJson(mResult);
     }

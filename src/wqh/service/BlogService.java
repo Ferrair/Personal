@@ -1,5 +1,6 @@
 package wqh.service;
 
+import com.jfinal.plugin.activerecord.Page;
 import wqh.model.Blog;
 import wqh.model.Tag;
 import wqh.util.CollectionUtil;
@@ -20,17 +21,15 @@ public class BlogService extends ServiceAbs {
         return CollectionUtil.of(Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id));
     }
 
-    public List<Blog> queryAll() {
-        //Todo: paginate in next Version
-        return Blog.dao.find("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id");
+    public Page<Blog> queryAll(int pageNum) {
+        return Blog.dao.paginate(pageNum, 10, "SELECT blog.*,tag.name AS tagName", "FROM blog,tag WHERE blog.tagId = tag.id");
     }
 
     /**
      * Query without <attr>content<attr/>,because the content is large
      */
-    public List<Blog> queryWithoutContent() {
-        //Todo: paginate in next Version
-        return Blog.dao.find("SELECT blog.id,blog.title,blog.type,blog.abstractStr,blog.createdAt,blog.times,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id");
+    public Page<Blog> queryWithoutContent(int pageNum) {
+        return Blog.dao.paginate(pageNum, 10, "SELECT blog.id,blog.title,blog.type,blog.abstractStr,blog.createdAt,blog.times,tag.name AS tagName", "FROM blog,tag WHERE blog.tagId = tag.id");
     }
 
     /**
