@@ -14,38 +14,44 @@ import java.util.List;
  * @version 1.0
  */
 public class UserService extends ServiceAbs {
-    public List<User> register(String username, String password) {
+    public User register(String username, String password) {
         User aUser = new User();
         aUser.set("username", username);
         aUser.set("password", password);
+        aUser.set("avatarUrl", "");
         aUser.set("lastModified", TimeUtil.getDateTime(System.currentTimeMillis()));
         if (aUser.save()) {
-            return CollectionUtil.of(aUser);
+            return aUser;
         } else {
             return null;
         }
     }
 
-    public List<User> login(String username, String password) {
+    public User login(String username, String password) {
         User aUser = User.dao.findFirst("SELECT * FROM user WHERE username = ? AND password = ?", username, password);
         if (aUser == null)
             return null;
         aUser.set("lastModified", TimeUtil.getDateTime(System.currentTimeMillis()));
         aUser.set("token", TokenManager.MD5(username + password + TimeUtil.getDateTime(System.currentTimeMillis())));
         aUser.update();
-        return CollectionUtil.of(aUser);
+        return aUser;
     }
 
     public User queryById(int id) {
         return User.dao.findFirst("SELECT * FROM user WHERE id = ?", id);
     }
 
-    public List<User> logout(Integer id) {
+
+    public boolean isExist(String username) {
+        return User.dao.findFirst("SELECT * FROM user WHERE username = ?", username) != null;
+    }
+
+    public User logout(Integer id) {
         User aUser = User.dao.findById(id);
         if (aUser == null)
             return null;
         aUser.set("token", null);
         aUser.update();
-        return CollectionUtil.of(aUser);
+        return aUser;
     }
 }

@@ -20,14 +20,14 @@ public class CommentService extends ServiceAbs {
      * @param belongTo  the blog id that the comment point to
      * @param content   the content of this comment
      */
-    public List<Comment> publish(String createdBy, int belongTo, String content) {
+    public Comment publish(String createdBy, int belongTo, String content) {
         Comment aComment = new Comment();
         aComment.set("createdBy", createdBy);
         aComment.set("content", content);
         aComment.set("belongTo", belongTo);
         aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         if (aComment.save())
-            return CollectionUtil.of(aComment);
+            return aComment;
         else return null;
     }
 

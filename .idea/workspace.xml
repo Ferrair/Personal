@@ -58,20 +58,7 @@
     <favorites_list name="Personal" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BlogController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/wqh/controller/BlogController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.088803">
-              <caret line="226" column="61" selection-start-line="226" selection-start-column="61" selection-end-line="226" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -94,7 +81,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/wqh/aop/TestDuang.java" />
         <option value="$PROJECT_DIR$/src/wqh/model/Blog.java" />
         <option value="$PROJECT_DIR$/src/wqh/model/Work.java" />
         <option value="$PROJECT_DIR$/src/Jdbc.properties" />
@@ -112,7 +98,6 @@
         <option value="$PROJECT_DIR$/web/pager/adminLogin.jsp" />
         <option value="$PROJECT_DIR$/web/pager/admin.jsp" />
         <option value="$PROJECT_DIR$/test/IntegetTest.java" />
-        <option value="$PROJECT_DIR$/test/StringTest.java" />
         <option value="$PROJECT_DIR$/test/IntegerTest.java" />
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/css/imusic.css" />
@@ -125,7 +110,6 @@
         <option value="$PROJECT_DIR$/src/wqh/service/ServiceAbs.java" />
         <option value="$PROJECT_DIR$/src/wqh/service/AdminService.java" />
         <option value="$PROJECT_DIR$/src/wqh/controller/AdminController.java" />
-        <option value="$PROJECT_DIR$/src/wqh/service/WorkService.java" />
         <option value="$PROJECT_DIR$/test/HashTest.java" />
         <option value="$PROJECT_DIR$/src/wqh/util/ListUtil.java" />
         <option value="$PROJECT_DIR$/test/JsonTest.java" />
@@ -135,16 +119,19 @@
         <option value="$PROJECT_DIR$/src/wqh/service/UserSerice.java" />
         <option value="$PROJECT_DIR$/src/wqh/util/TokenManager.java" />
         <option value="$PROJECT_DIR$/test/MD5Test.java" />
-        <option value="$PROJECT_DIR$/src/wqh/config/Result.java" />
-        <option value="$PROJECT_DIR$/src/wqh/controller/WorkController.java" />
         <option value="$PROJECT_DIR$/src/wqh/controller/IndexController.java" />
-        <option value="$PROJECT_DIR$/src/wqh/service/UserService.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/wqh/aop/UserIntercept.java" />
-        <option value="$PROJECT_DIR$/src/wqh/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/wqh/service/CommentService.java" />
+        <option value="$PROJECT_DIR$/test/StringTest.java" />
+        <option value="$PROJECT_DIR$/src/wqh/util/CollectionUtil.java" />
+        <option value="$PROJECT_DIR$/src/wqh/config/Result.java" />
         <option value="$PROJECT_DIR$/src/wqh/service/BlogService.java" />
         <option value="$PROJECT_DIR$/src/wqh/controller/BlogController.java" />
+        <option value="$PROJECT_DIR$/src/wqh/service/CommentService.java" />
+        <option value="$PROJECT_DIR$/src/wqh/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/wqh/service/WorkService.java" />
+        <option value="$PROJECT_DIR$/src/wqh/controller/WorkController.java" />
+        <option value="$PROJECT_DIR$/src/wqh/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -171,10 +158,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="width" value="1366" />
+    <option name="height" value="768" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -201,20 +186,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Personal">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -231,6 +202,52 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Personal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Personal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Personal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Personal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Personal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wqh" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Personal">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -263,7 +280,7 @@
     <property name="project.structure.side.proportion" value="0.3085847" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="Todo&#9;ACTION&#9;ActivateTODOToolWindow&#10;User&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/service/UserService.java&#10;UserC&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/UserController.java&#10;bL&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/BlogController.java&#10;Work&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/WorkController.java&#10;Index&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/IndexController.java&#10;Tod&#9;ACTION&#9;ActivateTODOToolWindow&#10;COnt&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/BlogController.java&#10;DriveM&#9;PSI&#9;JAVA://java.sql.DriverManager&#10;Activr&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/plugin/activerecord/ActiveRecordPlugin.java&#10;UrlSkipHandler&#9;PSI&#9;JAVA://com.jfinal.ext.handler.UrlSkipHandler&#10;Action&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/ActionHandler.java&#10;JF&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/JFinalFilter.java&#10;Jfin&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/JFinalFilter.java&#10;JFinal&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/JFinal.java&#10;ActionHan&#9;PSI&#9;JAVA://com.jfinal.core.ActionHandler&#10;BlogC&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/BlogController.java&#10;Blog&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/model/Blog.java&#10;WorkS&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/service/WorkService.java&#10;Ma&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/config/MainConfig.java&#10;WorkC&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/WorkController.java&#10;Inde&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/IndexController.java&#10;TOdo&#9;ACTION&#9;ActivateTODOToolWindow" />
+    <property name="SearchEverywhereHistoryKey" value="BlogC&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/BlogController.java&#10;User&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/UserController.java&#10;HashMap&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/util/HashMap.java&#10;ArrayLIst&#9;PSI&#9;JAVA://java.util.ArrayList&#10;Todo&#9;ACTION&#9;ActivateTODOToolWindow&#10;UserC&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/UserController.java&#10;bL&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/BlogController.java&#10;Work&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/WorkController.java&#10;Index&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/IndexController.java&#10;Tod&#9;ACTION&#9;ActivateTODOToolWindow&#10;COnt&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/BlogController.java&#10;DriveM&#9;PSI&#9;JAVA://java.sql.DriverManager&#10;Activr&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/plugin/activerecord/ActiveRecordPlugin.java&#10;UrlSkipHandler&#9;PSI&#9;JAVA://com.jfinal.ext.handler.UrlSkipHandler&#10;Action&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/ActionHandler.java&#10;JF&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/JFinalFilter.java&#10;Jfin&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/JFinalFilter.java&#10;JFinal&#9;FILE&#9;jar://E:/JavaLearn/Personal/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/JFinal.java&#10;ActionHan&#9;PSI&#9;JAVA://com.jfinal.core.ActionHandler&#10;Blog&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/model/Blog.java&#10;WorkS&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/service/WorkService.java&#10;Ma&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/config/MainConfig.java&#10;WorkC&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/WorkController.java&#10;Inde&#9;FILE&#9;file://E:/JavaLearn/Personal/src/wqh/controller/IndexController.java&#10;TOdo&#9;ACTION&#9;ActivateTODOToolWindow" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -284,27 +301,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 7.0.68">
-    <configuration default="false" name="StringTest.test5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="Personal" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="StringTest" />
-      <option name="METHOD_NAME" value="test5" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="false" name="StringTest.test6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="Personal" />
@@ -326,48 +322,6 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="RefrenceTest.WeakReferenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="Personal" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RefrenceTest" />
-      <option name="METHOD_NAME" value="WeakReferenceTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="HashTest.testHash" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="Personal" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="HashTest" />
-      <option name="METHOD_NAME" value="testHash" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="false" name="MD5Test.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="Personal" />
@@ -376,6 +330,69 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MD5Test" />
       <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="StringTest.testIntern" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="Personal" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StringTest" />
+      <option name="METHOD_NAME" value="testIntern" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="StringTest.test7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="Personal" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StringTest" />
+      <option name="METHOD_NAME" value="test7" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="StringTest.test8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="Personal" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StringTest" />
+      <option name="METHOD_NAME" value="test8" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -883,19 +900,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 7.0.68" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.StringTest.test5" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.StringTest.test6" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.RefrenceTest.WeakReferenceTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.HashTest.testHash" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.MD5Test.test" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.StringTest.test6" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.MD5Test.test" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.StringTest.testIntern" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.StringTest.test7" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.StringTest.test8" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.MD5Test.test" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.HashTest.testHash" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.RefrenceTest.WeakReferenceTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.StringTest.test6" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.StringTest.test5" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.StringTest.test7" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.StringTest.test8" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.StringTest.test6" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.StringTest.testIntern" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.MD5Test.test" />
       </list>
     </recent_temporary>
   </component>
@@ -957,44 +974,47 @@
       <workItem from="1463239093571" duration="119000" />
       <workItem from="1463302107025" duration="204000" />
       <workItem from="1463409363781" duration="372000" />
-      <workItem from="1463459917921" duration="1109000" />
+      <workItem from="1463459917921" duration="1274000" />
+      <workItem from="1463481757508" duration="834000" />
+      <workItem from="1463654424648" duration="7465000" />
+      <workItem from="1463666287955" duration="1435000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HashTest_testHash - 2016.04.26 at 23h 21m 51s.xml">
-      <configuration name="HashTest.testHash" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HashTest_testHash - 2016.04.26 at 23h 22m 16s.xml">
-      <configuration name="HashTest.testHash" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HashTest_testHash - 2016.05.02 at 19h 39m 18s.xml">
-      <configuration name="HashTest.testHash" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MD5Test_test - 2016.05.12 at 21h 49m 18s.xml">
-      <configuration name="MD5Test.test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MD5Test_test - 2016.05.12 at 21h 49m 34s.xml">
-      <configuration name="MD5Test.test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RefrenceTest_WeakReferenceTest - 2016.03.21 at 21h 59m 57s.xml">
-      <configuration name="RefrenceTest.WeakReferenceTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StringTest_test2 - 2016.03.21 at 20h 44m 05s.xml">
-      <configuration name="StringTest.test2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StringTest_test3 - 2016.03.21 at 20h 44m 31s.xml">
-      <configuration name="StringTest.test3" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StringTest_test5 - 2016.03.21 at 20h 45m 14s.xml">
-      <configuration name="StringTest.test5" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StringTest_test6 - 2016.03.21 at 20h 45m 25s.xml">
+    <history-entry file="StringTest_test6 - 2016.05.19 at 18h 59m 19s.xml">
       <configuration name="StringTest.test6" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_test6 - 2016.05.19 at 18h 59m 43s.xml">
+      <configuration name="StringTest.test6" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_test7 - 2016.05.19 at 19h 01m 02s.xml">
+      <configuration name="StringTest.test7" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_test7 - 2016.05.19 at 19h 01m 23s.xml">
+      <configuration name="StringTest.test7" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_test7 - 2016.05.19 at 19h 02m 38s.xml">
+      <configuration name="StringTest.test7" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_test7 - 2016.05.19 at 19h 18m 18s.xml">
+      <configuration name="StringTest.test7" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_test7 - 2016.05.19 at 19h 19m 14s.xml">
+      <configuration name="StringTest.test7" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_test8 - 2016.05.19 at 19h 17m 17s.xml">
+      <configuration name="StringTest.test8" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_testIntern - 2016.05.19 at 18h 49m 26s.xml">
+      <configuration name="StringTest.testIntern" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringTest_testIntern - 2016.05.19 at 18h 51m 21s.xml">
+      <configuration name="StringTest.testIntern" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135050000" />
+    <option name="totallyTimeSpent" value="144949000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1006,26 +1026,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1366" height="768" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28184712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32786885" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39042553" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2764141" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.544586" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.195231" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16818182" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20166163" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14879154" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10422961" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19864048" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -1035,6 +1054,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1059,63 +1079,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://dbtable:/ef239a81/8acdaf80-7196-4255-b0b4-e0282ddb7fd3/personal.blog">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ef239a81/8acdaf80-7196-4255-b0b4-e0282ddb7fd3/personal.work">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/model/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27124774">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ef239a81/8acdaf80-7196-4255-b0b4-e0282ddb7fd3/personal.comment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/token/ITokenCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14754099">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/token/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="21" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/pager/admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16835018">
@@ -1144,24 +1107,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="338" column="5" selection-start-line="335" selection-start-column="4" selection-end-line="338" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/HashTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08214677">
           <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/util/CollectionUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2039749">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1282,34 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/controller/WorkController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58229816">
-          <caret line="31" column="45" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/service/AdminService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23291926">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/service/WorkService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7220497">
-          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/apache-tomcat-7.0.68/lib/servlet-api.jar!/javax/servlet/http/HttpSession.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5681818">
@@ -1347,13 +1268,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/aop/PostIntercept.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/core/JFinalFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1375,14 +1289,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/config/Result.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3581081">
-          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/wqh/aop/AdminIntercept.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45945945">
@@ -1397,48 +1303,175 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/controller/UserController.java">
+    <entry file="jar://$PROJECT_DIR$/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/plugin/activerecord/Page.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18837675">
-          <caret line="80" column="28" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.020220589">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="67" column="15" selection-start-line="67" selection-start-column="15" selection-end-line="67" selection-end-column="15" />
+          <folding>
+            <element signature="e#1860#1861#0" expanded="false" />
+            <element signature="e#1882#1883#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/plugin/activerecord/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="315" column="24" selection-start-line="315" selection-start-column="24" selection-end-line="315" selection-end-column="24" />
+          <caret line="354" column="43" selection-start-line="354" selection-start-column="43" selection-end-line="354" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wqh/service/BlogService.java">
+    <entry file="jar://$PROJECT_DIR$/web/WEB-INF/lib/jfinal-2.2-bin-with-src.jar!/com/jfinal/plugin/activerecord/dialect/Dialect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6439394">
-          <caret line="24" column="126" selection-start-line="24" selection-start-column="126" selection-end-line="24" selection-end-column="126" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="153" column="5" selection-start-line="150" selection-start-column="4" selection-end-line="153" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/StringTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.10344828">
+          <caret line="20" column="16" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5">
+          <caret line="197" column="28" selection-start-line="197" selection-start-column="28" selection-end-line="197" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/util/CollectionUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4827586">
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding>
+            <element signature="e#319#320#0" expanded="true" />
+            <element signature="e#386#387#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/util/HashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="15.0">
+          <caret line="687" column="47" selection-start-line="687" selection-start-column="47" selection-end-line="687" selection-end-column="47" />
+          <folding>
+            <element signature="e#19072#19073#0" expanded="true" />
+            <element signature="e#19130#19131#0" expanded="true" />
+            <element signature="e#27845#27888#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/util/Arrays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20186335">
+          <caret line="5028" column="6" selection-start-line="5028" selection-start-column="6" selection-end-line="5028" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/aop/PostIntercept.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/service/AdminService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3508772">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/config/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44444445">
+          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/wqh/service/CommentService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.760101">
-          <caret line="38" column="131" selection-start-line="38" selection-start-column="131" selection-end-line="38" selection-end-column="131" />
+        <state vertical-scroll-proportion="0.29239765">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/service/WorkService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="e#603#604#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/controller/WorkController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1403508">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/service/BlogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8888889">
+          <caret line="74" column="25" selection-start-line="72" selection-start-column="6" selection-end-line="74" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/wqh/controller/BlogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.088803">
-          <caret line="226" column="61" selection-start-line="226" selection-start-column="61" selection-end-line="226" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.47368422">
+          <caret line="227" column="24" selection-start-line="227" selection-start-column="24" selection-end-line="227" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wqh/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29239765">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

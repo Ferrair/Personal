@@ -48,12 +48,7 @@ public class WorkController extends Controller {
             renderJson(mResult);
             return;
         }
-        boolean isPublish = mService.publish(title, description, url, logoUrl);
-        if (isPublish) {
-            mResult.fail(101);
-        } else {
-            mResult.success(true);
-        }
+        mResult.success(mService.publish(title, description, url, logoUrl));
         renderJson(mResult);
     }
 
@@ -66,11 +61,11 @@ public class WorkController extends Controller {
             renderJson(mResult);
             return;
         }
-        List<Work> workList = mService.queryById(id);
-        if (workList == null) {
+        Work aWork = mService.queryById(id);
+        if (aWork == null) {
             mResult.fail(101);
         } else {
-            mResult.success(workList);
+            mResult.success(aWork);
         }
         renderJson(mResult);
     }

@@ -9,8 +9,6 @@ import wqh.model.User;
 import wqh.service.ServiceAbs;
 import wqh.service.UserService;
 
-import java.util.List;
-
 /**
  * Created on 2016/5/12.
  *
@@ -32,7 +30,20 @@ public class UserController extends Controller {
             renderJson(mResult);
             return;
         }
-        mResult.success(mUserService.register(username, password));
+        // Duplicate User
+        if (mUserService.isExist(username)) {
+            mResult.fail(108); // Duplicate User
+            renderJson(mResult);
+            return;
+        }
+        User aUser = mUserService.register(username, password);
+        // Unknown Error........
+        if (aUser == null) {
+            mResult.fail(109);
+            renderJson(mResult);
+            return;
+        }
+        mResult.success(aUser);
         renderJson(mResult);
     }
 
@@ -46,16 +57,17 @@ public class UserController extends Controller {
             renderJson(mResult);
             return;
         }
-        List<User> userList = mUserService.login(username, password);
-        if (userList == null || userList.size() == 0) {
-            mResult.fail(101); // Wrong Username Or password.
+        User aUser = mUserService.login(username, password);
+        // Wrong Username Or password.
+        if (aUser == null) {
+            mResult.fail(101);
             renderJson(mResult);
             return;
         }
-        mResult.success(userList);
+        mResult.success(aUser);
         renderJson(mResult);
         // Session Work.
-        Integer id = userList.get(0).get("id"); // Make the type of return-value is Integer.
+        Integer id = aUser.get("id"); // Make the type of return-value is Integer.
         this.setSessionAttr(String.valueOf(id), true);
     }
 

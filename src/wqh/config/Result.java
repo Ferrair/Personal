@@ -1,6 +1,9 @@
 package wqh.config;
 
+import wqh.util.CollectionUtil;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,18 +23,27 @@ public class Result extends HashMap<String, Object> {
         code.put(104, "Action Error"); // Wrong in HTTP action.
         code.put(105, "Access Denied"); // Access Denied.
         code.put(106, "Need Login"); // Need Login.
+        code.put(107, "No More Data"); // No More Data
+        code.put(108, "Duplicate User"); // Duplicate User
+        code.put(109, "Duplicate User"); // Unknown Error
     }
 
     public void fail(int errorCode) {
         put("Code", errorCode);
         put("Msg", code.get(errorCode));
-        put("Result", null);
     }
 
 
-    public void success(Object object) {
+    public <DataType> void success(DataType aData) {
         put("Code", 100);
         put("Msg", code.get(100));
-        put("Result", object);
+        put("Result", CollectionUtil.of(aData));
+    }
+
+
+    public <DataType> void success(List<DataType> aList) {
+        put("Code", 100);
+        put("Msg", code.get(100));
+        put("Result", aList);
     }
 }

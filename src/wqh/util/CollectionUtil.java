@@ -1,8 +1,8 @@
 package wqh.util;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created on 2016/5/3.
@@ -15,9 +15,8 @@ public class CollectionUtil {
     /**
      * Convert item data  to List
      */
+    @SafeVarargs
     public static <T> List<T> of(T... data) {
-        List<T> mList = new ArrayList<>();
-        Collections.addAll(mList, data);
-        return mList;
+        return Stream.of(data).collect(Collectors.toList());
     }
 }

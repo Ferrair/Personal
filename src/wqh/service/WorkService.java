@@ -12,19 +12,19 @@ import java.util.List;
  * @version 1.0
  */
 public class WorkService extends ServiceAbs {
-    public boolean publish(String title, String description, String url, String logoUrl) {
+    public Work publish(String title, String description, String url, String logoUrl) {
         Work aWork = new Work();
         aWork.set("title", title);
         aWork.set("description", description);
         aWork.set("url", url);
         aWork.set("logoUrl", logoUrl);
-        return aWork.save();
+        if (aWork.save())
+            return aWork;
+        else return null;
     }
 
-    public List<Work> queryById(int id) {
-        List<Work> mList = new ArrayList<>();
-        mList.add(Work.dao.findById(id));
-        return mList;
+    public Work queryById(int id) {
+        return Work.dao.findById(id);
     }
 
     public List<Work> queryByTitle(String title) {

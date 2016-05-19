@@ -40,8 +40,8 @@ public class BlogController extends Controller {
             return;
         }
         Page<Blog> blogAbstracts = mBlogService.queryWithoutContent(pageNum);
-        if (blogAbstracts.getPageSize() == 0) {
-            mResult.fail(101);
+        if (blogAbstracts.getList().size() == 0) {
+            mResult.fail(107);
         } else {
             mResult.success(blogAbstracts.getList());
         }
@@ -56,11 +56,11 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        List<Blog> blogList = mBlogService.queryById(id);
-        if (blogList == null) {
+        Blog aBlog = mBlogService.queryById(id);
+        if (aBlog == null) {
             mResult.fail(101);
         } else {
-            mResult.success(blogList);
+            mResult.success(aBlog);
         }
         renderJson(mResult);
     }
@@ -152,8 +152,8 @@ public class BlogController extends Controller {
             return;
         }
         Page<Comment> commentList = mCommentService.queryByBelongId(belongTo, pageNum);
-        if (commentList.getPageSize() == 0) {
-            mResult.fail(101);
+        if (commentList.getList().size() == 0) {
+            mResult.fail(107);
         } else {
             mResult.success(commentList.getList());
         }

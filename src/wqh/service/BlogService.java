@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class BlogService extends ServiceAbs {
 
-    public List<Blog> queryById(int id) {
-        return CollectionUtil.of(Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id));
+    public Blog queryById(int id) {
+        return Blog.dao.findFirst("SELECT blog.*,tag.name AS tagName FROM blog,tag WHERE blog.tagId = tag.id AND blog.id = ?", id);
     }
 
     public Page<Blog> queryAll(int pageNum) {
@@ -57,7 +57,7 @@ public class BlogService extends ServiceAbs {
     /**
      * @param tagName the name attr of the tag. The tag MUST exists in the database,otherwise return false(that means this publish is fail)
      */
-    public List<Blog> publish(String title, String tagName, String type, String abstractStr, String content) {
+    public Blog publish(String title, String tagName, String type, String abstractStr, String content) {
         Tag targetTag = Tag.dao.findFirst("SELECT id FROM tagName WHERE name = ?", tagName);
         if (targetTag == null) {
             return null;
@@ -71,11 +71,11 @@ public class BlogService extends ServiceAbs {
         aBlog.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         aBlog.set("times", 0);
         if (aBlog.save())
-            return CollectionUtil.of(aBlog);
+            return aBlog;
         else return null;
     }
 
-    public Collection<? extends Blog> queryByContent(String content) {
+    public List<Blog> queryByContent(String content) {
         return Blog.dao.find("SELECT * FROM blog WHERE title LIKE '%" + content + "%'");
     }
 
@@ -89,11 +89,11 @@ public class BlogService extends ServiceAbs {
     /**
      * add the times which will be read.
      */
-    public List<Blog> addTimes(int id) {
-        Blog targetBlog = queryById(id).get(0);
+    public Blog addTimes(int id) {
+        Blog targetBlog = queryById(id);
         int oldTimes = targetBlog.get("times");
         if (update(id, "times", ++oldTimes))
-            return CollectionUtil.of(targetBlog);
+            return targetBlog;
         else return null;
     }
 
