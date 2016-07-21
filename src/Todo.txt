@@ -1,2 +1,1 @@
-1.We can store Token in Session instead of Database.Beacuse the Token hava a expire-time.
-  One Question : How can user in logged-status for long time???
+中文乱码

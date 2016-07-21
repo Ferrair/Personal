@@ -1,8 +1,8 @@
 package wqh.service;
 
+import com.jfinal.plugin.activerecord.Page;
 import wqh.model.Work;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +31,8 @@ public class WorkService extends ServiceAbs {
         return Work.dao.find("SELECT * FROM work WHERE title = ?", title);
     }
 
-    public List<Work> queryAll() {
-        return Work.dao.find("SELECT * FROM work");
+    public Page<Work> queryAll(int pageNum) {
+        return Work.dao.paginate(pageNum, 10, "SELECT *", "FROM work");
     }
 
     /**

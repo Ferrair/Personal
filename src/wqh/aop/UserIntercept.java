@@ -10,7 +10,10 @@ import wqh.service.UserService;
 
 /**
  * Created on 2016/5/12.
- * Interceptor of token
+ * Interceptor of token.
+ *
+ * 101 : Can't Find User in database.
+ * 106 : Wrong token
  *
  * @author 王启航
  * @version 1.0

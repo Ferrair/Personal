@@ -3,8 +3,8 @@ package wqh.controller;
 import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Page;
 import wqh.aop.PostIntercept;
-import wqh.aop.UserIntercept;
 import wqh.config.Result;
 import wqh.model.Work;
 import wqh.service.ServiceAbs;
@@ -20,18 +20,24 @@ import java.util.List;
  */
 public class WorkController extends Controller {
     private WorkService mService = ServiceAbs.getInstance(WorkService.class, this);
-    Result mResult = new Result();
+    private Result mResult = new Result();
 
     /**
      * Index of the blog,show all info of all the work(the number of work is a bit)
      */
     @SuppressWarnings("unused")
     public void index() {
-        List<Work> workAbstracts = mService.queryAll();
-        if (workAbstracts.size() == 0) {
-            mResult.fail(101);
+        Integer pageNum = getParaToInt("pageNum");
+        if (pageNum == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        Page<Work> workAbstracts = mService.queryAll(pageNum);
+        if (workAbstracts.getList().size() == 0) {
+            mResult.fail(107);
         } else {
-            mResult.success(workAbstracts);
+            mResult.success(workAbstracts.getList());
         }
         renderJson(mResult);
     }
@@ -70,6 +76,7 @@ public class WorkController extends Controller {
         renderJson(mResult);
     }
 
+    // @Before(UserIntercept.class)
     @ActionKey("/work/queryByTitle")
     public void queryByTitle() {
         String title = getPara("title");
@@ -91,7 +98,6 @@ public class WorkController extends Controller {
      * Download this apk MUST login first.
      * fileName:the file name of the Work,for example----"Chatting.apk"
      */
-    @Before(UserIntercept.class)
     @ActionKey("/work/download")
     public void download() {
         String fileName = getPara("fileName");

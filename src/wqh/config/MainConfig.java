@@ -23,7 +23,6 @@ public class MainConfig extends JFinalConfig {
     @Override
     public void configConstant(Constants me) {
         me.setDevMode(true);
-        me.setEncoding("utf-8");
         me.setViewType(ViewType.JSP);
         me.setBaseDownloadPath("work");
     }
