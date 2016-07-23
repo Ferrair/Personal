@@ -210,4 +210,36 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
+    /**
+     * Publish comments MUST login first.
+     */
+    @Before({PostIntercept.class, UserIntercept.class})
+    @ActionKey("/blog/replyComment")
+    public void replyComment() {
+        Integer belongTo = getParaToInt("belongTo"); //MUST
+        String content = getPara("content");         //MUST
+        String createdBy = getPara("createdBy");     //MUST
+        Integer replyToUserId = getParaToInt("replyToUserId"); //MUST
+        Integer replyToCommentId = getParaToInt("replyToCommentId"); //MUST
+
+        if (belongTo == null || content == null || createdBy == null || replyToUserId == null || replyToCommentId == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        mResult.success(mCommentService.reply(createdBy, belongTo, content, replyToUserId, replyToCommentId));
+        renderJson(mResult);
+    }
+
+    @ActionKey("/blog/deleteComment")
+    public void deleteComment() {
+        Integer id = getParaToInt("id"); //MUST
+        if (id == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        mResult.success(mCommentService.delete(id));
+        renderJson(mResult);
+    }
 }

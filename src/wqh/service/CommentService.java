@@ -2,6 +2,7 @@ package wqh.service;
 
 import com.jfinal.plugin.activerecord.Page;
 import wqh.model.Comment;
+import wqh.model.User;
 import wqh.util.CollectionUtil;
 import wqh.util.TimeUtil;
 
@@ -35,18 +36,33 @@ public class CommentService extends ServiceAbs {
      * comment.createdBy = user.id
      * comment.belongTo = blog.id = belongTo
      */
-    public Page<Comment> queryByBelongId(int belongTo,int pageNum) {
-        return Comment.dao.paginate(pageNum,10,"SELECT comment.*,user.username AS creatorName,user.avatarUrl AS creatorAvatarUrl","FROM comment,blog,user WHERE comment.belongTo = blog.id AND comment.createdBy = user.id AND comment.belongTo = ?", belongTo);
+    public Page<Comment> queryByBelongId(int belongTo, int pageNum) {
+        return Comment.dao.paginate(pageNum, 10, "SELECT comment.*,user.username AS creatorName,user.avatarUri AS creatorAvatarUri", "FROM comment,blog,user WHERE comment.belongTo = blog.id AND comment.createdBy = user.id AND comment.belongTo = ?", belongTo);
     }
 
     public boolean delete(int id) {
-        //Todo: Not consider in this version
-        return false;
+        return Comment.dao.deleteById(id);
     }
 
-    public boolean query() {
-        //Todo: Not consider in this version
-        return false;
+    /**
+     * Query comment in one blog by given queryStr.
+     */
+    public Page<Comment> query(int belongTo, String queryStr, int pageNum) {
+        return Comment.dao.paginate(pageNum, 10, "SELECT comment.*,user.username AS creatorName,user.avatarUri AS creatorAvatarUri", "FROM comment,blog,user WHERE comment.belongTo = blog.id AND comment.createdBy = user.id AND comment.belongTo = ? AND content LIKE %?%", belongTo, queryStr);
     }
 
+    public Comment reply(String createdBy, Integer belongTo, String content, Integer replyToUserId, Integer replyToCommentId) {
+        Comment aComment = new Comment();
+        aComment.set("createdBy", createdBy);
+        aComment.set("content", content);
+        aComment.set("belongTo", belongTo);
+        aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
+        aComment.set("replyToUserId", replyToUserId);
+        aComment.set("replyToUserName", User.dao.findById(replyToUserId).get("username"));
+        aComment.set("replyContent", Comment.dao.findById(replyToCommentId).get("content"));
+        aComment.set("replyToCommentId", replyToCommentId);
+        if (aComment.save())
+            return aComment;
+        else return null;
+    }
 }

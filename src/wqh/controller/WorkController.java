@@ -3,6 +3,7 @@ package wqh.controller;
 import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.Page;
 import wqh.aop.PostIntercept;
 import wqh.config.Result;
@@ -21,6 +22,7 @@ import java.util.List;
 public class WorkController extends Controller {
     private WorkService mService = ServiceAbs.getInstance(WorkService.class, this);
     private Result mResult = new Result();
+    public static final String WORK_DIR = "work";
 
     /**
      * Index of the blog,show all info of all the work(the number of work is a bit)
@@ -106,6 +108,7 @@ public class WorkController extends Controller {
             renderJson(mResult);
             return;
         }
-        renderFile(fileName);
+        System.out.println(PathKit.getWebRootPath() + "\\" + WORK_DIR + "\\" + fileName);
+        renderFile("\\" + WORK_DIR + "\\" + fileName);
     }
 }

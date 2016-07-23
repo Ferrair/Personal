@@ -18,13 +18,19 @@ import wqh.model.*;
  * @version 1.0
  */
 
+
 public class MainConfig extends JFinalConfig {
+
+    @SuppressWarnings("WeakerAccess")
+    public static final String DOWNLOAD_PATH = "file";
+    public static final String UPLOAD_PATH = "file";
 
     @Override
     public void configConstant(Constants me) {
         me.setDevMode(true);
         me.setViewType(ViewType.JSP);
-        me.setBaseDownloadPath("work");
+        me.setBaseDownloadPath(DOWNLOAD_PATH);
+        me.setBaseUploadPath(UPLOAD_PATH);
     }
 
     @Override

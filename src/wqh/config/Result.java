@@ -25,7 +25,8 @@ public class Result extends HashMap<String, Object> {
         code.put(106, "Need Login"); // Need Login.
         code.put(107, "No More Data"); // No More Data
         code.put(108, "Duplicate User"); // Duplicate User
-        code.put(109, "Duplicate User"); // Unknown Error
+        code.put(109, "Unknown Error"); // Unknown Error
+        code.put(110, "File Upload Fail"); // Unknown Error
     }
 
     public void fail(int errorCode) {

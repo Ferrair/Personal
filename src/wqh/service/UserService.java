@@ -19,6 +19,7 @@ public class UserService extends ServiceAbs {
         aUser.set("username", username);
         aUser.set("password", password);
         aUser.set("avatarUrl", "");
+        aUser.set("coverUrl", "");
         aUser.set("lastModified", TimeUtil.getDateTime(System.currentTimeMillis()));
         if (aUser.save()) {
             return aUser;
@@ -53,5 +54,37 @@ public class UserService extends ServiceAbs {
         aUser.set("token", null);
         aUser.update();
         return aUser;
+    }
+
+    public User changeCover(Integer id, String coverUrl) {
+        User aUser = User.dao.findById(id);
+        if (aUser == null)
+            return null;
+        aUser.set("coverUri", coverUrl);
+        aUser.update();
+        return aUser;
+    }
+
+    public User changeAvatar(Integer id, String avatarUrl) {
+        User aUser = User.dao.findById(id);
+        if (aUser == null)
+            return null;
+        aUser.set("avatarUri", avatarUrl);
+        aUser.update();
+        return aUser;
+    }
+
+    public String avatarURI(int id) {
+        User aUser = User.dao.findById(id);
+        if (aUser == null)
+            return null;
+        return aUser.getStr("avatarUri");
+    }
+
+    public String coverURI(int id) {
+        User aUser = User.dao.findById(id);
+        if (aUser == null)
+            return null;
+        return aUser.getStr("coverUri");
     }
 }
