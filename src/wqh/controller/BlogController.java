@@ -4,6 +4,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
+import wqh.aop.DeleteIntercept;
 import wqh.aop.PostIntercept;
 import wqh.aop.UserIntercept;
 import wqh.config.Result;
@@ -200,7 +201,7 @@ public class BlogController extends Controller {
         Integer belongTo = getParaToInt("belongTo"); //MUST
         String content = getPara("content");         //MUST
         String createdBy = getPara("createdBy");     //MUST
-
+        System.out.println(belongTo + " " + content + " " + createdBy);
         if (belongTo == null || content == null || createdBy == null) {
             mResult.fail(102);
             renderJson(mResult);
@@ -219,20 +220,20 @@ public class BlogController extends Controller {
         Integer belongTo = getParaToInt("belongTo"); //MUST
         String content = getPara("content");         //MUST
         String createdBy = getPara("createdBy");     //MUST
-        Integer replyToUserId = getParaToInt("replyToUserId"); //MUST
-        Integer replyToCommentId = getParaToInt("replyToCommentId"); //MUST
+        Integer replyTo = getParaToInt("replyTo");   //MUST
 
-        if (belongTo == null || content == null || createdBy == null || replyToUserId == null || replyToCommentId == null) {
+        if (belongTo == null || content == null || createdBy == null || replyTo == null) {
             mResult.fail(102);
             renderJson(mResult);
             return;
         }
-        mResult.success(mCommentService.reply(createdBy, belongTo, content, replyToUserId, replyToCommentId));
+        mResult.success(mCommentService.reply(createdBy, belongTo, content, replyTo));
         renderJson(mResult);
     }
 
-    @ActionKey("/blog/deleteComment")
-    public void deleteComment() {
+    @Before({DeleteIntercept.class})
+    @ActionKey("/blog/deleteById")
+    public void deleteById() {
         Integer id = getParaToInt("id"); //MUST
         if (id == null) {
             mResult.fail(102);

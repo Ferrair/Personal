@@ -51,16 +51,14 @@ public class CommentService extends ServiceAbs {
         return Comment.dao.paginate(pageNum, 10, "SELECT comment.*,user.username AS creatorName,user.avatarUri AS creatorAvatarUri", "FROM comment,blog,user WHERE comment.belongTo = blog.id AND comment.createdBy = user.id AND comment.belongTo = ? AND content LIKE %?%", belongTo, queryStr);
     }
 
-    public Comment reply(String createdBy, Integer belongTo, String content, Integer replyToUserId, Integer replyToCommentId) {
+    public Comment reply(String createdBy, Integer belongTo, String content, Integer replyTo) {
         Comment aComment = new Comment();
+        Comment replyComment = Comment.dao.findById(replyTo);
         aComment.set("createdBy", createdBy);
-        aComment.set("content", content);
+        aComment.set("content", content + " //@" + replyComment.get("creatorName") + ":" + replyComment.get("content"));
         aComment.set("belongTo", belongTo);
         aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
-        aComment.set("replyToUserId", replyToUserId);
-        aComment.set("replyToUserName", User.dao.findById(replyToUserId).get("username"));
-        aComment.set("replyContent", Comment.dao.findById(replyToCommentId).get("content"));
-        aComment.set("replyToCommentId", replyToCommentId);
+        aComment.set("replyTo", replyTo);
         if (aComment.save())
             return aComment;
         else return null;

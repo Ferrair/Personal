@@ -14,7 +14,7 @@ import wqh.config.Result;
  * @version 1.0
  */
 public class PostIntercept implements Interceptor {
-    Result mResult = new Result();
+    private Result mResult = new Result();
 
     @Override
     public void intercept(Invocation inv) {

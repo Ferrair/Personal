@@ -131,8 +131,8 @@ public class UserController extends Controller {
             renderJson(mResult);
             return;
         }
-        String destDirStr = PathKit.getWebRootPath() + "\\" + MainConfig.UPLOAD_PATH + "\\" + id;
-        String coverURI = id + "\\" + coverFile.getName();
+        String destDirStr = PathKit.getWebRootPath() + "/" + MainConfig.UPLOAD_PATH + "/" + id;
+        String coverURI = id + "/" + coverFile.getName();
         File destDir = new File(destDirStr);
         if (!destDir.exists())
             destDir.mkdirs();
@@ -164,8 +164,8 @@ public class UserController extends Controller {
             renderJson(mResult);
             return;
         }
-        String destDirStr = PathKit.getWebRootPath() + "\\" + MainConfig.UPLOAD_PATH + "\\" + id;
-        String avatarURI = id + "\\" + avatarFile.getName();
+        String destDirStr = PathKit.getWebRootPath() + "/" + MainConfig.UPLOAD_PATH + "/" + id;
+        String avatarURI = id + "/" + avatarFile.getName();
         File destDir = new File(destDirStr);
         if (!destDir.exists())
             destDir.mkdirs();
@@ -189,7 +189,7 @@ public class UserController extends Controller {
             renderJson(mResult);
             return;
         }
-        renderFile("\\" + mUserService.avatarURI(id));
+        renderFile("/" + mUserService.avatarURI(id));
     }
 
     @ActionKey("/user/downloadCover")
@@ -200,6 +200,6 @@ public class UserController extends Controller {
             renderJson(mResult);
             return;
         }
-        renderFile("\\" + mUserService.coverURI(id));
+        renderFile("/" + mUserService.coverURI(id));
     }
 }

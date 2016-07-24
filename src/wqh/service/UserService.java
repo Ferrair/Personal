@@ -18,8 +18,8 @@ public class UserService extends ServiceAbs {
         User aUser = new User();
         aUser.set("username", username);
         aUser.set("password", password);
-        aUser.set("avatarUrl", "");
-        aUser.set("coverUrl", "");
+        aUser.set("avatarUri", "");
+        aUser.set("coverUri", "");
         aUser.set("lastModified", TimeUtil.getDateTime(System.currentTimeMillis()));
         if (aUser.save()) {
             return aUser;

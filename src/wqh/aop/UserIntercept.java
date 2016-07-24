@@ -59,7 +59,7 @@ public class UserIntercept implements Interceptor {
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            mResult.fail(102);
+            mResult.fail(105);
             mController.renderJson(mResult);
         }
     }

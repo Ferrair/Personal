@@ -108,7 +108,7 @@ public class WorkController extends Controller {
             renderJson(mResult);
             return;
         }
-        System.out.println(PathKit.getWebRootPath() + "\\" + WORK_DIR + "\\" + fileName);
-        renderFile("\\" + WORK_DIR + "\\" + fileName);
+        System.out.println(PathKit.getWebRootPath() + "/" + WORK_DIR + "/" + fileName);
+        renderFile("/" + WORK_DIR + "/" + fileName);
     }
 }
