@@ -19,6 +19,7 @@ public class AvoidAttackHandler extends Handler {
     @Override
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {
         System.out.println("AvoidAttackHandler=> " + target);
+        response.addHeader("Access-Control-Allow-Origin", "*");
         next.handle(target, request, response, isHandled);
     }
 }

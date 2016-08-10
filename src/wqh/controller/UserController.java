@@ -29,6 +29,7 @@ public class UserController extends Controller {
     @ActionKey("/user/register")
     public void register() {
         String username = getPara("username");
+        String email = getPara("email");
         String password = getPara("password");
         if (username == null || password == null) {
             mResult.fail(102);
@@ -41,7 +42,7 @@ public class UserController extends Controller {
             renderJson(mResult);
             return;
         }
-        User aUser = mUserService.register(username, password);
+        User aUser = mUserService.register(username, email, password);
         // Unknown Error........
         if (aUser == null) {
             mResult.fail(109);

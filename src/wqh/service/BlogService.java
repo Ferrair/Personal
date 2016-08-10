@@ -55,10 +55,12 @@ public class BlogService extends ServiceAbs {
     }
 
     /**
+     * synchronized publish.
+     *
      * @param tagName the name attr of the tag. The tag MUST exists in the database,otherwise return false(that means this publish is fail)
      */
     public Blog publish(String title, String tagName, String type, String abstractStr, String content) {
-        Tag targetTag = Tag.dao.findFirst("SELECT id FROM tagName WHERE name = ?", tagName);
+        Tag targetTag = Tag.dao.findFirst("SELECT id FROM tag WHERE name = ?", tagName);
         if (targetTag == null) {
             return null;
         }
@@ -70,20 +72,30 @@ public class BlogService extends ServiceAbs {
         aBlog.set("content", content);
         aBlog.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         aBlog.set("times", 0);
-        if (aBlog.save())
-            return aBlog;
-        else return null;
+        synchronized (this) {
+            if (aBlog.save())
+                return aBlog;
+            else return null;
+        }
+    }
+
+    /**
+     * synchronized update.
+     *
+     * @param id the id of a blog which want to be updated.
+     */
+    public Blog update(int id, String key, Object value) {
+        Blog aBlog = Blog.dao.findById(id);
+        aBlog.set(key, value);
+        synchronized (this) {
+            if (aBlog.update())
+                return aBlog;
+            else return null;
+        }
     }
 
     public List<Blog> queryByContent(String content) {
         return Blog.dao.find("SELECT * FROM blog WHERE title LIKE '%" + content + "%'");
-    }
-
-    /**
-     * @param id the id of a blog which want to be updated.
-     */
-    public boolean update(int id, String key, Object value) {
-        return Blog.dao.findById(id).set(key, value).update();
     }
 
     /**
@@ -92,7 +104,7 @@ public class BlogService extends ServiceAbs {
     public Blog addTimes(int id) {
         Blog targetBlog = queryById(id);
         int oldTimes = targetBlog.get("times");
-        if (update(id, "times", ++oldTimes))
+        if (update(id, "times", ++oldTimes) != null)
             return targetBlog;
         else return null;
     }

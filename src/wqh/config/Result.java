@@ -27,6 +27,7 @@ public class Result extends HashMap<String, Object> {
         code.put(108, "Duplicate User"); // Duplicate User
         code.put(109, "Unknown Error"); // Unknown Error
         code.put(110, "File Upload Fail"); // Unknown Error
+        code.put(111, "Must be Markdown"); // Must be Markdown
     }
 
     public void fail(int errorCode) {

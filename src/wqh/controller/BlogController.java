@@ -14,8 +14,11 @@ import wqh.service.BlogService;
 import wqh.service.CommentService;
 import wqh.service.ServiceAbs;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created on 2016/3/12.
@@ -24,11 +27,13 @@ import java.util.List;
  * @version 1.1 Add Some AOP
  */
 
+@SuppressWarnings("Duplicates")
 public class BlogController extends Controller {
 
     private BlogService mBlogService = ServiceAbs.getInstance(BlogService.class, this);
     private CommentService mCommentService = ServiceAbs.getInstance(CommentService.class, this);
     private Result mResult = new Result();
+    private ExecutorService mThreadPool = Executors.newCachedThreadPool();
 
     /**
      * Index of the blog,show the tag and abstracts of all the blog.
@@ -162,24 +167,6 @@ public class BlogController extends Controller {
     }
 
     @Before(PostIntercept.class)
-    @ActionKey("/blog/publish")
-    public void publish() {
-        String title = getPara("title");     //MUST
-        String type = getPara("type");
-        String content = getPara("content"); //MUST
-        String tag = getPara("tag");         //MUST
-        String abstractStr = getPara("abstractStr");
-
-        if (title == null || content == null || tag == null) {
-            mResult.fail(102);
-            renderJson(mResult);
-            return;
-        }
-        mResult.success(mBlogService.publish(title, tag, type, abstractStr, content));
-        renderJson(mResult);
-    }
-
-    @Before(PostIntercept.class)
     @ActionKey("/blog/addTimes")
     public void addTimes() {
         Integer id = getParaToInt("id");
@@ -242,5 +229,138 @@ public class BlogController extends Controller {
         }
         mResult.success(mCommentService.delete(id));
         renderJson(mResult);
+    }
+
+
+    @Before(PostIntercept.class)
+    @ActionKey("/blog/publish")
+    public void publish() {
+        String title = getPara("title");     //MUST
+        String type = getPara("type");
+        String content = getPara("content"); //MUST
+        String tag = getPara("tag");         //MUST
+        String abstractStr = getPara("abstractStr");
+
+        if (title == null || content == null || tag == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        mThreadPool.execute(() -> {
+            mResult.success(mBlogService.publish(title, tag, type, abstractStr, content));
+            renderJson(mResult);
+        });
+    }
+
+    @Before(PostIntercept.class)
+    @ActionKey("/blog/publishFile")
+    public void publishFile() {
+        String type = getPara("type");
+        String abstractStr = getPara("abstractStr");
+        String tag = getPara("tag");         // MUST
+        File blogFile = getFile("blog").getFile();
+        if (blogFile == null) {
+            mResult.fail(110);
+            renderJson(mResult);
+            return;
+        }
+        if (tag == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        if (!blogFile.getName().endsWith(".md")) {
+            mResult.fail(110);
+            renderJson(mResult);
+            return;
+        }
+        mThreadPool.execute(() -> {
+            String title = blogFile.getName();
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new InputStreamReader(new FileInputStream(blogFile), "UTF-8"));
+                StringBuilder builder = new StringBuilder();
+                String line = "";
+                while (line != null) {
+                    line = reader.readLine();
+                    builder.append(line);
+                }
+                mResult.success(mBlogService.publish(title, tag, type, abstractStr, builder.toString()));
+                renderJson(mResult);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    mResult.fail(109);
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    @ActionKey("/blog/update")
+    public void update() {
+        Integer id = getParaToInt("id");
+        String key = getPara("key");
+        String value = getPara("value");
+
+        if (id == null || value == null || key == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        mThreadPool.execute(() -> {
+            mResult.success(mBlogService.update(id, key, value));
+            renderJson(mResult);
+        });
+    }
+
+    /**
+     * Update blog content via given File.
+     */
+    @ActionKey("/blog/updateFile")
+    public void updateFile() throws IOException {
+        Integer id = getParaToInt("id");
+        File blogFile = getFile("blog").getFile();
+        if (id == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        if (!blogFile.getName().endsWith(".md")) {
+            mResult.fail(110);
+            renderJson(mResult);
+            return;
+        }
+        mThreadPool.execute(() -> {
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new InputStreamReader(new FileInputStream(blogFile), "UTF-8"));
+                StringBuilder builder = new StringBuilder();
+                String line = "";
+                while (line != null) {
+                    line = reader.readLine();
+                    builder.append(line);
+                }
+                mResult.success(mBlogService.update(id, "content", builder.toString()));
+                renderJson(mResult);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    mResult.fail(109);
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

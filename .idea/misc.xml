@@ -7,6 +7,9 @@
       <item index="1" class="java.lang.String" itemvalue="com.jfinal.core.ActionKey" />
     </list>
   </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="JSX" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />

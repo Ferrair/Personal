@@ -1,0 +1,151 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>React Tutorial</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
+</head>
+<body>
+<div id="content"></div>
+<script type="text/babel">
+    var Comment = React.createClass({
+        rawMarkup: function (content) {
+            var md = new Remarkable();
+            var rawMarkup = md.render(content);
+            return {__html: rawMarkup};
+        },
+
+        render: function () {
+            return (
+                    <div className="comment">
+                        <h2 className="commentCreator">
+                            {
+                                this.props.comment.creatorName.toString()
+                            }
+                        </h2>
+                        <span dangerouslySetInnerHTML={this.rawMarkup(this.props.children.toString())}/>
+                    </div>
+            );
+        }
+    });
+
+    var CommentBox = React.createClass({
+        loadCommentsFromServer: function () {
+            $.ajax({
+                url: '/blog/queryComment',
+                dataType: 'json',
+                data: {belongTo: 1, pageNum: 1},
+                cache: false,
+                success: function (data) {
+                    const code = Number(data.Code);
+                    if (code === 100) {
+                        this.setState({data: data.Result});
+                    }
+                }.bind(this),
+                error: function (xhr, status, err) {
+                    console.error(status, err.toString());
+                }.bind(this)
+            });
+        },
+        handleCommentSubmit: function (content) {
+            $.ajax({
+                url: this.props.url,
+                dataType: 'json',
+                type: 'POST',
+                data: {content: content, belongTo: 1, createdBy: 1},
+                success: function (data) {
+                    console.log(data);
+                    this.setState({data: data});
+                }.bind(this),
+                error: function (xhr, status, err) {
+                    this.setState({data: comments});
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            });
+        },
+        // componentDidMount is a method called automatically by React after a component is rendered for the first time
+        componentDidMount: function () {
+            this.loadCommentsFromServer();
+        },
+        getInitialState: function () {
+            return {data: []};
+        },
+        render: function () {
+            return (
+                    <div className="commentBox">
+                        <h1>Comments</h1>
+                        <CommentList data={this.state.data}/>
+                        <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
+                    </div>
+            );
+        }
+    });
+
+    var CommentList = React.createClass({
+        render: function () {
+            var commentNodes = this.props.data.map(function (comment) {
+                // {comment.content}可以看为<Comment>的Child,所以在Comment类里面　this.props.children就是这里面的内容
+                return (
+
+                        <Comment key={comment.id} comment={comment}>
+                            {comment.content}
+                        </Comment>
+                );
+            });
+            return (
+                    <div className="commentList">
+                        {commentNodes}
+                    </div>
+            );
+        }
+    });
+
+    var CommentForm = React.createClass({
+        getInitialState: function () {
+            return {author: '', text: ''};
+        },
+        handleTextChange: function (e) {
+            this.setState({text: e.target.value});
+        },
+        checkUserIsLogin: function () {
+            return true;
+        },
+        handleSubmit: function (e) {
+            e.preventDefault();
+            var content = this.refs.content.value.trim();
+            if (!text) {
+                return;
+            }
+            if (!this.checkUserIsLogin()) {
+                alert("Login");
+                return;
+            }
+            this.props.onCommentSubmit({content: content});
+            this.setState({author: '', text: ''});
+        },
+        render: function () {
+            return (
+                    <form className="commentForm" onSubmit={this.handleSubmit}>
+                        <textarea
+                                type="text"
+                                placeholder="Say something..."
+                                ref="content"
+                        />
+                        <input type="submit" value="Post"/>
+                    </form>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <CommentBox />,
+            document.getElementById('content')
+    );
+</script>
+</body>
+</html>

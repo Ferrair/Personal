@@ -14,9 +14,10 @@ import java.util.List;
  * @version 1.0
  */
 public class UserService extends ServiceAbs {
-    public User register(String username, String password) {
+    public User register(String username, String email, String password) {
         User aUser = new User();
         aUser.set("username", username);
+        aUser.set("email", email);
         aUser.set("password", password);
         aUser.set("avatarUri", "");
         aUser.set("coverUri", "");

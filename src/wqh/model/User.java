@@ -8,6 +8,7 @@ import com.jfinal.plugin.activerecord.Model;
  *
  * id INT(11) PK
  * username VARCHAR(40) NN
+ * email VARCHAR(40) NN
  * password VARCHAR(40) NN
  * avatarUri VARCHAR(200)
  * token VARCHAR(100)

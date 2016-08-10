@@ -23,7 +23,7 @@ public class IndexController extends Controller {
     @ActionKey("/")
     public void index() {
         System.out.println(PathKit.getWebRootPath());
-        renderText("Welcome to DA Wizards");
+        redirect("/index.html"); //redirect the request to index.html
     }
 
 
