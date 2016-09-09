@@ -15,7 +15,7 @@
     </filter>
     <filter-mapping>
         <filter-name>jfinal</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/api/*</url-pattern>
     </filter-mapping>
     <!--Set Session expire time:60 min here.-->
     <session-config>

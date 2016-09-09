@@ -4,6 +4,7 @@ import com.jfinal.handler.Handler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created on 2016/3/20.
@@ -18,8 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 public class AvoidAttackHandler extends Handler {
     @Override
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {
-        System.out.println("AvoidAttackHandler=> " + target);
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        next.handle(target, request, response, isHandled);
+        try {
+            request.setCharacterEncoding("UTF-8");
+            // response.addHeader("Access-Control-Allow-Origin", "*");
+            next.handle(target, request, response, isHandled);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -17,11 +17,8 @@ import wqh.model.*;
  * @author 王启航
  * @version 1.0
  */
-
-
 public class MainConfig extends JFinalConfig {
 
-    @SuppressWarnings("WeakerAccess")
     public static final String DOWNLOAD_PATH = "file";
     public static final String UPLOAD_PATH = "file";
 
@@ -31,15 +28,16 @@ public class MainConfig extends JFinalConfig {
         me.setViewType(ViewType.JSP);
         me.setBaseDownloadPath(DOWNLOAD_PATH);
         me.setBaseUploadPath(UPLOAD_PATH);
+        me.setEncoding("UTF-8");
     }
 
     @Override
     public void configRoute(Routes me) {
-        me.add("/", IndexController.class);
-        me.add("/blog", BlogController.class);
-        me.add("/work", WorkController.class);
-        me.add("/admin", AdminController.class);
-        me.add("/user", UserController.class);
+        me.add("/api/", IndexController.class);
+        me.add("/api/blog", BlogController.class);
+        me.add("/api/work", WorkController.class);
+        me.add("/api/admin", AdminController.class);
+        me.add("/api/user", UserController.class);
     }
 
     @Override
@@ -65,8 +63,7 @@ public class MainConfig extends JFinalConfig {
     //在Jfinal里面是倒序执行的(即在后面添加的Handler先执行，ActionHandler最后执行)
     @Override
     public void configHandler(Handlers me) {
-        //me.add(new ContextPathHandler("basePath"));
-        //me.add(new AvoidAttackHandler());
+        me.add(new AvoidAttackHandler());
     }
 
 }

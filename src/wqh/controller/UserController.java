@@ -26,7 +26,7 @@ public class UserController extends Controller {
     private Result mResult = new Result();
 
     @Before(PostIntercept.class)
-    @ActionKey("/user/register")
+    @ActionKey("/api/user/register")
     public void register() {
         String username = getPara("username");
         String email = getPara("email");
@@ -54,7 +54,7 @@ public class UserController extends Controller {
     }
 
     @Before(PostIntercept.class)
-    @ActionKey("/user/login")
+    @ActionKey("/api/user/login")
     public void login() {
         String username = getPara("username");
         String password = getPara("password");
@@ -77,7 +77,7 @@ public class UserController extends Controller {
         this.setSessionAttr(String.valueOf(id), true);
     }
 
-    @ActionKey("/user/logout")
+    @ActionKey("/api/user/logout")
     public void logout() {
         Integer id = getParaToInt("id");
         if (id == null) {
@@ -96,7 +96,7 @@ public class UserController extends Controller {
     /**
      * Get the currentUser's status.(The Result set will always null whether the status is logged or not logged)
      */
-    @ActionKey("/user/status")
+    @ActionKey("/api/user/status")
     public void status() {
         Integer id = getParaToInt("id");
         User targetUser = mUserService.queryById(id);
@@ -118,7 +118,7 @@ public class UserController extends Controller {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Before(PostIntercept.class)
-    @ActionKey("/user/changeCover")
+    @ActionKey("/api/user/changeCover")
     public void changeCover() {
         File coverFile = getFile("cover").getFile();
         Integer id = getParaToInt("id");
@@ -151,7 +151,7 @@ public class UserController extends Controller {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Before(PostIntercept.class)
-    @ActionKey("/user/changeAvatar")
+    @ActionKey("/api/user/changeAvatar")
     public void changeAvatar() {
         File avatarFile = getFile("avatar").getFile();
         Integer id = getParaToInt("id");
@@ -182,7 +182,7 @@ public class UserController extends Controller {
         System.out.println("File-> " + target.getAbsolutePath());
     }
 
-    @ActionKey("/user/downloadAvatar")
+    @ActionKey("/api/user/downloadAvatar")
     public void downloadAvatar() {
         Integer id = getParaToInt("id");
         if (id == null) {
@@ -193,7 +193,7 @@ public class UserController extends Controller {
         renderFile("/" + mUserService.avatarURI(id));
     }
 
-    @ActionKey("/user/downloadCover")
+    @ActionKey("/api/user/downloadCover")
     public void downloadCover() {
         Integer id = getParaToInt("id");
         if (id == null) {

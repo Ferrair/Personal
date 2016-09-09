@@ -45,7 +45,7 @@ public class WorkController extends Controller {
     }
 
     @Before(PostIntercept.class)
-    @ActionKey("/work/publish")
+    @ActionKey("/api/work/publish")
     public void publish() {
         String title = getPara("title");
         String description = getPara("description");
@@ -61,7 +61,7 @@ public class WorkController extends Controller {
     }
 
 
-    @ActionKey("/work/queryById")
+    @ActionKey("/api/work/queryById")
     public void queryById() {
         Integer id = getParaToInt("id");
         if (id == null) {
@@ -79,7 +79,7 @@ public class WorkController extends Controller {
     }
 
     // @Before(UserIntercept.class)
-    @ActionKey("/work/queryByTitle")
+    @ActionKey("/api/work/queryByTitle")
     public void queryByTitle() {
         String title = getPara("title");
         if (title == null) {
@@ -100,7 +100,7 @@ public class WorkController extends Controller {
      * Download this apk MUST login first.
      * fileName:the file name of the Work,for example----"Chatting.apk"
      */
-    @ActionKey("/work/download")
+    @ActionKey("/api/work/download")
     public void download() {
         String fileName = getPara("fileName");
         if (fileName == null) {

@@ -33,7 +33,6 @@ public class BlogController extends Controller {
     private BlogService mBlogService = ServiceAbs.getInstance(BlogService.class, this);
     private CommentService mCommentService = ServiceAbs.getInstance(CommentService.class, this);
     private Result mResult = new Result();
-    private ExecutorService mThreadPool = Executors.newCachedThreadPool();
 
     /**
      * Index of the blog,show the tag and abstracts of all the blog.
@@ -54,7 +53,7 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
-    @ActionKey("/blog/queryById")
+    @ActionKey("/api/blog/queryById")
     public void queryById() {
         Integer id = getParaToInt("id");
         if (id == null) {
@@ -75,7 +74,7 @@ public class BlogController extends Controller {
      * Provided Fuzzy-Query:return the blog whose title contains the <code>title<code/>
      * So this method is used as search
      */
-    @ActionKey("/blog/queryByTitle")
+    @ActionKey("/api/blog/queryByTitle")
     public void queryByTitle() {
         String title = getPara("title");
         if (title == null) {
@@ -96,7 +95,7 @@ public class BlogController extends Controller {
      * Provided Fuzzy-Query:return the blog whose time is in <code>createdAt<code/>
      * Format: "2016-03" MUST contains "0"
      */
-    @ActionKey("/blog/queryByCreatedAt")
+    @ActionKey("/api/blog/queryByCreatedAt")
     public void queryByTime() {
         String createdAt = getPara("createdAt");
         if (createdAt == null) {
@@ -113,7 +112,7 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
-    @ActionKey("/blog/queryByTag")
+    @ActionKey("/api/blog/queryByTag")
     public void queryByTag() {
         String tag = getPara("tag");
         if (tag == null) {
@@ -131,7 +130,7 @@ public class BlogController extends Controller {
     }
 
 
-    @ActionKey("/blog/queryByType")
+    @ActionKey("/api/blog/queryByType")
     public void queryByType() {
         String type = getPara("type");
         if (type == null) {
@@ -148,7 +147,7 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
-    @ActionKey("/blog/queryComment")
+    @ActionKey("/api/blog/queryComment")
     public void queryComment() {
         Integer belongTo = getParaToInt("belongTo");
         Integer pageNum = getParaToInt("pageNum");
@@ -167,7 +166,7 @@ public class BlogController extends Controller {
     }
 
     @Before(PostIntercept.class)
-    @ActionKey("/blog/addTimes")
+    @ActionKey("/api/blog/addTimes")
     public void addTimes() {
         Integer id = getParaToInt("id");
         if (id == null) {
@@ -183,12 +182,11 @@ public class BlogController extends Controller {
      * Publish comments MUST login first.
      */
     @Before({PostIntercept.class, UserIntercept.class})
-    @ActionKey("/blog/appendComment")
+    @ActionKey("/api/blog/appendComment")
     public void appendComment() {
         Integer belongTo = getParaToInt("belongTo"); //MUST
         String content = getPara("content");         //MUST
         String createdBy = getPara("createdBy");     //MUST
-        System.out.println(belongTo + " " + content + " " + createdBy);
         if (belongTo == null || content == null || createdBy == null) {
             mResult.fail(102);
             renderJson(mResult);
@@ -202,7 +200,7 @@ public class BlogController extends Controller {
      * Publish comments MUST login first.
      */
     @Before({PostIntercept.class, UserIntercept.class})
-    @ActionKey("/blog/replyComment")
+    @ActionKey("/api/blog/replyComment")
     public void replyComment() {
         Integer belongTo = getParaToInt("belongTo"); //MUST
         String content = getPara("content");         //MUST
@@ -219,7 +217,7 @@ public class BlogController extends Controller {
     }
 
     @Before({DeleteIntercept.class})
-    @ActionKey("/blog/deleteById")
+    @ActionKey("/api/blog/deleteById")
     public void deleteById() {
         Integer id = getParaToInt("id"); //MUST
         if (id == null) {
@@ -233,7 +231,7 @@ public class BlogController extends Controller {
 
 
     @Before(PostIntercept.class)
-    @ActionKey("/blog/publish")
+    @ActionKey("/api/blog/publish")
     public void publish() {
         String title = getPara("title");     //MUST
         String type = getPara("type");
@@ -246,14 +244,12 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        mThreadPool.execute(() -> {
-            mResult.success(mBlogService.publish(title, tag, type, abstractStr, content));
-            renderJson(mResult);
-        });
+        mResult.success(mBlogService.publish(title, tag, type, abstractStr, content));
+        renderJson(mResult);
     }
 
     @Before(PostIntercept.class)
-    @ActionKey("/blog/publishFile")
+    @ActionKey("/api/blog/publishFile")
     public void publishFile() {
         String type = getPara("type");
         String abstractStr = getPara("abstractStr");
@@ -274,36 +270,34 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        mThreadPool.execute(() -> {
-            String title = blogFile.getName();
-            BufferedReader reader = null;
+        String title = blogFile.getName();
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(blogFile), "UTF-8"));
+            StringBuilder builder = new StringBuilder();
+            String line = "";
+            while (line != null) {
+                line = reader.readLine();
+                builder.append(line);
+            }
+            mResult.success(mBlogService.publish(title, tag, type, abstractStr, builder.toString()));
+            renderJson(mResult);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(blogFile), "UTF-8"));
-                StringBuilder builder = new StringBuilder();
-                String line = "";
-                while (line != null) {
-                    line = reader.readLine();
-                    builder.append(line);
+                mResult.fail(109);
+                if (reader != null) {
+                    reader.close();
                 }
-                mResult.success(mBlogService.publish(title, tag, type, abstractStr, builder.toString()));
-                renderJson(mResult);
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    mResult.fail(109);
-                    if (reader != null) {
-                        reader.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
             }
-        });
+
+        }
     }
 
-    @ActionKey("/blog/update")
+    @ActionKey("/api/blog/update")
     public void update() {
         Integer id = getParaToInt("id");
         String key = getPara("key");
@@ -314,16 +308,14 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        mThreadPool.execute(() -> {
-            mResult.success(mBlogService.update(id, key, value));
-            renderJson(mResult);
-        });
+        mResult.success(mBlogService.update(id, key, value));
+        renderJson(mResult);
     }
 
     /**
      * Update blog content via given File.
      */
-    @ActionKey("/blog/updateFile")
+    @ActionKey("/api/blog/updateFile")
     public void updateFile() throws IOException {
         Integer id = getParaToInt("id");
         File blogFile = getFile("blog").getFile();
@@ -337,30 +329,29 @@ public class BlogController extends Controller {
             renderJson(mResult);
             return;
         }
-        mThreadPool.execute(() -> {
-            BufferedReader reader = null;
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(blogFile), "UTF-8"));
+            StringBuilder builder = new StringBuilder();
+            String line = "";
+            while (line != null) {
+                line = reader.readLine();
+                builder.append(line);
+            }
+            mResult.success(mBlogService.update(id, "content", builder.toString()));
+            renderJson(mResult);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(blogFile), "UTF-8"));
-                StringBuilder builder = new StringBuilder();
-                String line = "";
-                while (line != null) {
-                    line = reader.readLine();
-                    builder.append(line);
+                mResult.fail(109);
+                if (reader != null) {
+                    reader.close();
                 }
-                mResult.success(mBlogService.update(id, "content", builder.toString()));
-                renderJson(mResult);
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    mResult.fail(109);
-                    if (reader != null) {
-                        reader.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
-        });
+        }
+
     }
 }

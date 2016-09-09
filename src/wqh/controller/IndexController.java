@@ -20,17 +20,10 @@ import java.util.List;
 
 public class IndexController extends Controller {
 
-    @ActionKey("/")
-    public void index() {
-        System.out.println(PathKit.getWebRootPath());
-        redirect("/index.html"); //redirect the request to index.html
-    }
-
-
     /**
      * Search everywhere by given searchStr.And provided Fuzzy-Query.
      */
-    @ActionKey("/blog/search")
+    @ActionKey("/api/blog/search")
     public void search() {
         String searchStr = getPara("search");
         BlogService mBlogService = ServiceAbs.getInstance(BlogService.class, this);
