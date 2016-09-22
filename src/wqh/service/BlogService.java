@@ -3,10 +3,8 @@ package wqh.service;
 import com.jfinal.plugin.activerecord.Page;
 import wqh.model.Blog;
 import wqh.model.Tag;
-import wqh.util.CollectionUtil;
 import wqh.util.TimeUtil;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

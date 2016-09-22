@@ -1,11 +1,8 @@
 package wqh.service;
 
 import wqh.model.User;
-import wqh.util.CollectionUtil;
 import wqh.util.TimeUtil;
 import wqh.util.TokenManager;
-
-import java.util.List;
 
 /**
  * Created on 2016/5/12.

@@ -15,10 +15,7 @@ import wqh.service.CommentService;
 import wqh.service.ServiceAbs;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created on 2016/3/12.
@@ -36,15 +33,24 @@ public class BlogController extends Controller {
 
     /**
      * Index of the blog,show the tag and abstracts of all the blog.
+     * includeContent : whether the result include blog content,default false.
      */
     public void index() {
         Integer pageNum = getParaToInt("pageNum");
+        Boolean includeContent = getParaToBoolean("includeContent", false);
+
         if (pageNum == null) {
             mResult.fail(102);
             renderJson(mResult);
             return;
         }
-        Page<Blog> blogAbstracts = mBlogService.queryWithoutContent(pageNum);
+        Page<Blog> blogAbstracts;
+        if (!includeContent) {
+            blogAbstracts = mBlogService.queryWithoutContent(pageNum);
+        } else {
+            blogAbstracts = mBlogService.queryAll(pageNum);
+        }
+
         if (blogAbstracts.getList().size() == 0) {
             mResult.fail(107);
         } else {
@@ -202,10 +208,10 @@ public class BlogController extends Controller {
     @Before({PostIntercept.class, UserIntercept.class})
     @ActionKey("/api/blog/replyComment")
     public void replyComment() {
-        Integer belongTo = getParaToInt("belongTo"); //MUST
+        Integer belongTo = getParaToInt("belongTo"); //MUST  your new comment's id
         String content = getPara("content");         //MUST
         String createdBy = getPara("createdBy");     //MUST
-        Integer replyTo = getParaToInt("replyTo");   //MUST
+        Integer replyTo = getParaToInt("replyTo");   //MUST  reply to which comment's id
 
         if (belongTo == null || content == null || createdBy == null || replyTo == null) {
             mResult.fail(102);

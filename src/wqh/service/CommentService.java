@@ -3,10 +3,7 @@ package wqh.service;
 import com.jfinal.plugin.activerecord.Page;
 import wqh.model.Comment;
 import wqh.model.User;
-import wqh.util.CollectionUtil;
 import wqh.util.TimeUtil;
-
-import java.util.List;
 
 /**
  * Created on 2016/3/12.
@@ -38,8 +35,13 @@ public class CommentService extends ServiceAbs {
     public Comment reply(String createdBy, Integer belongTo, String content, Integer replyTo) {
         Comment aComment = new Comment();
         Comment replyComment = Comment.dao.findById(replyTo);
+        /*
+         * the UserId which is replied.
+         */
+        Integer targetUserId = replyComment.get("createdBy");
+
         aComment.set("createdBy", createdBy);
-        aComment.set("content", content + " //@" + replyComment.get("creatorName") + ":" + replyComment.get("content"));
+        aComment.set("content", content + " //@" + User.dao.findById(targetUserId).get("username") + ":" + replyComment.get("content"));
         aComment.set("belongTo", belongTo);
         aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
         aComment.set("replyTo", replyTo);
