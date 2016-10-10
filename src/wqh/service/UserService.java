@@ -1,5 +1,6 @@
 package wqh.service;
 
+import com.jfinal.plugin.activerecord.Page;
 import wqh.model.User;
 import wqh.util.TimeUtil;
 import wqh.util.TokenManager;
@@ -84,5 +85,13 @@ public class UserService extends ServiceAbs {
         if (aUser == null)
             return null;
         return aUser.getStr("coverUri");
+    }
+
+    public boolean delete(int id) {
+        return User.dao.deleteById(id);
+    }
+
+    public Page<User> all(int pageNum) {
+        return User.dao.paginate(pageNum, 10, "SELECT * ", " FROM user");
     }
 }

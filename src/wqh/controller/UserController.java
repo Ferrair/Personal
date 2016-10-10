@@ -5,9 +5,12 @@ import com.jfinal.config.Constants;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.PathKit;
+import com.jfinal.plugin.activerecord.Page;
+import wqh.aop.AdminIntercept;
 import wqh.aop.PostIntercept;
 import wqh.config.MainConfig;
 import wqh.config.Result;
+import wqh.model.Comment;
 import wqh.model.User;
 import wqh.service.ServiceAbs;
 import wqh.service.UserService;
@@ -202,5 +205,37 @@ public class UserController extends Controller {
             return;
         }
         renderFile("/" + mUserService.coverURI(id));
+    }
+
+    /**
+     * Get all user in the Database,this action can only be operated by Admin.
+     */
+    @Before(AdminIntercept.class)
+    @ActionKey("/api/user/all")
+    public void allUser() {
+        Integer pageNum = getParaToInt("pageNum");
+        Page<User> userList = mUserService.all(pageNum);
+        if (userList.getList().size() == 0) {
+            mResult.fail(107);
+        } else {
+            mResult.success(userList.getList());
+        }
+        renderJson(mResult);
+    }
+
+    /**
+     * Delete a user.this action can only be operated by Admin.
+     */
+    @Before(AdminIntercept.class)
+    @ActionKey("/api/user/deleteById")
+    public void deleteById() {
+        Integer id = getParaToInt("id"); //MUST
+        if (id == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        mResult.success(mUserService.delete(id));
+        renderJson(mResult);
     }
 }

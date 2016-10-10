@@ -5,6 +5,8 @@ import wqh.model.Comment;
 import wqh.model.User;
 import wqh.util.TimeUtil;
 
+import java.util.List;
+
 /**
  * Created on 2016/3/12.
  *
@@ -18,15 +20,16 @@ public class CommentService extends ServiceAbs {
      * @param belongTo  the blog id that the comment point to
      * @param content   the content of this comment
      */
-    public Comment publish(String createdBy, int belongTo, String content) {
+    public List<Comment> publish(String createdBy, int belongTo, String content) {
         Comment aComment = new Comment();
         aComment.set("createdBy", createdBy);
         aComment.set("content", content);
         aComment.set("belongTo", belongTo);
         aComment.set("createdAt", TimeUtil.getDateTime(System.currentTimeMillis()));
-        if (aComment.save())
-            return aComment;
-        else return null;
+        if (aComment.save()) {
+            Integer id = aComment.get("id");
+            return Comment.dao.find("SELECT comment.*,user.username AS creatorName,user.avatarUri AS creatorAvatarUri FROM comment,blog,user WHERE comment.belongTo = blog.id AND comment.createdBy = user.id AND comment.belongTo = ? AND comment.id = ?", belongTo, id);
+        } else return null;
     }
 
     /**

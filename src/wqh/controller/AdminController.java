@@ -5,6 +5,8 @@ import com.jfinal.aop.Clear;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import wqh.aop.AdminIntercept;
+import wqh.aop.PostIntercept;
+import wqh.config.Result;
 import wqh.service.AdminService;
 import wqh.service.ServiceAbs;
 
@@ -14,32 +16,34 @@ import wqh.service.ServiceAbs;
  * @author 王启航
  * @version 1.0
  */
-@Clear
 @Before(AdminIntercept.class)
 public class AdminController extends Controller {
 
-    AdminService mService = ServiceAbs.getInstance(AdminService.class, this);
+    private AdminService mService = ServiceAbs.getInstance(AdminService.class, this);
+    private Result mResult = new Result();
+
+    public void index() {
+    }
 
     /**
      * Attempt to login.Other operation can be done after login(which means this method is the only method without login)
      * So <code>@Clear<code/> here.
      */
-    @Clear
-    public void index() {
+    @Before(PostIntercept.class)
+    @ActionKey("/api/admin/login")
+    public void login() {
         String adminUserName = getPara("username");
         String adminPassword = getPara("password");
-
-        boolean isSuccess = mService.attemptLogin(adminUserName, adminPassword);
-        if (isSuccess) {
-            validateToken("Token");
-            redirect("pager/admin.jsp");
-        } else {
-            createToken("Token", 30 * 60);
-            redirect("pager/adminLogin.jsp");
+        if (adminUserName == null || adminPassword == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
         }
+        mResult.success(mService.attemptLogin(adminUserName, adminPassword));
+        renderJson(mResult);
     }
 
-    @ActionKey("/admin/logout")
+    @ActionKey("/api/admin/logout")
     public void logout() {
         mService.logout();
     }

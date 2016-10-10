@@ -15,12 +15,6 @@ public class AdminIntercept implements Interceptor {
     @Override
     public void intercept(Invocation inv) {
         Controller controller = inv.getController();
-        String username = controller.getSessionAttr("admin");
-
-        if (username == null || username.equals("")) {
-            controller.redirect("pager/adminLogin.jsp");
-        } else {
-            inv.invoke();
-        }
+        inv.invoke();
     }
 }

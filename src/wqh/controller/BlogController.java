@@ -4,6 +4,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
+import wqh.aop.AdminIntercept;
 import wqh.aop.DeleteIntercept;
 import wqh.aop.PostIntercept;
 import wqh.aop.UserIntercept;
@@ -223,8 +224,8 @@ public class BlogController extends Controller {
     }
 
     @Before({DeleteIntercept.class})
-    @ActionKey("/api/blog/deleteById")
-    public void deleteById() {
+    @ActionKey("/api/blog/deleteCommentById")
+    public void deleteCommentById() {
         Integer id = getParaToInt("id"); //MUST
         if (id == null) {
             mResult.fail(102);
@@ -235,8 +236,21 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
+    @Before({DeleteIntercept.class})
+    @ActionKey("/api/blog/deleteById")
+    public void deleteById() {
+        Integer id = getParaToInt("id"); //MUST
+        if (id == null) {
+            mResult.fail(102);
+            renderJson(mResult);
+            return;
+        }
+        mResult.success(mBlogService.delete(id));
+        renderJson(mResult);
+    }
 
-    @Before(PostIntercept.class)
+
+    @Before({PostIntercept.class, AdminIntercept.class})
     @ActionKey("/api/blog/publish")
     public void publish() {
         String title = getPara("title");     //MUST
@@ -254,7 +268,7 @@ public class BlogController extends Controller {
         renderJson(mResult);
     }
 
-    @Before(PostIntercept.class)
+    @Before({PostIntercept.class, AdminIntercept.class})
     @ActionKey("/api/blog/publishFile")
     public void publishFile() {
         String type = getPara("type");

@@ -107,4 +107,7 @@ public class BlogService extends ServiceAbs {
         else return null;
     }
 
+    public boolean delete(int id) {
+        return Blog.dao.deleteById(id);
+    }
 }
