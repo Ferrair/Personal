@@ -3,13 +3,14 @@
 
 # Get Started
 - `git clone https://github.com/Ferrair/Personal.git`
-- 配置数据库（该项目数据库配置文件在`/src/Jdbc.properties`）
+- 配置数据库（该项目数据库配置文件在`/src/Jdbc.properties`） 要修改密码哟
 - 假数据，将`source`中的`personal.sql`拷贝到`~`目录下
 - 进入你的`mysql`命令界面`mysql -uroot -p`
 - 创建数据库`create database personal;`
 - 进入表中`use personal;`
 - 导入数据`source ~/personal.sql`
 - 可以将`./out/artifacts/Personal_war_wxploded/Personal_war_wxploded.war`拷贝到`Tomcat`下的`webapps`目录下运行即可
+- Mac OS 需要在tomcat/bin目录下：`chmod 777 *.sh`加个权限
 
 # 架构
  - `Interceptor`：拦截器，或者叫做`AOP`,其作用就是在所有层之前，拦截用户请求（一般来说就是用户的身份验证(`Authentication`)之类）
